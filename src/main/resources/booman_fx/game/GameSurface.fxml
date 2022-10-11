@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" pickOnBounds="false" prefHeight="600.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booman_fx.controller.GameSurfaceController">
+   <children>
+      <AnchorPane fx:id="objectContainer" prefHeight="600.0" prefWidth="680.0" />
+      <ImageView fitHeight="600.0" fitWidth="860.0" layoutX="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/Border.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="123.0" fitWidth="185.0" layoutX="675.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/Information.png" />
+         </image>
+      </ImageView>
+      <Group>
+         <children>
+            <ImageView fx:id="imgHome" fitHeight="50.0" fitWidth="50.0" layoutX="700.0" layoutY="200.0" onMouseClicked="#clickImgHome" onMouseEntered="#enterImgHome" onMouseExited="#exitImgHome" pickOnBounds="true" preserveRatio="true" />
+
+            <ImageView fx:id="imgPause" fitHeight="50.0" fitWidth="50.0" layoutX="780.0" layoutY="200.0" onMouseClicked="#clickimgPause" onMouseEntered="#enterimgPause" onMouseExited="#exitimgPause" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgContinue" fitHeight="50.0" fitWidth="50.0" layoutX="780.0" layoutY="200.0" onMouseClicked="#clickimgContinue" onMouseEntered="#enterimgContinue" onMouseExited="#exitimgContinue" pickOnBounds="true" preserveRatio="true" />
+
+            <ImageView fx:id="imgOnSoundEffect" fitHeight="50.0" fitWidth="50.0" layoutX="780.0" layoutY="280.0" onMouseClicked="#clickimgOnSoundEffect" onMouseEntered="#enterimgOnSoundEffect" onMouseExited="#exitimgOnSoundEffect" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgOffSoundEffect" fitHeight="50.0" fitWidth="50.0" layoutX="780.0" layoutY="280.0" onMouseClicked="#clickimgOffSoundEffect" onMouseEntered="#enterimgOffSoundEffect" onMouseExited="#exitimgOffSoundEffect" pickOnBounds="true" preserveRatio="true" />
+
+            <ImageView fx:id="imgOnMusic" fitHeight="50.0" fitWidth="50.0" layoutX="700.0" layoutY="280.0" onMouseClicked="#clickimgOnMusic" onMouseEntered="#enterimgOnMusic" onMouseExited="#exitimgOnMusic" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgOffMusic" fitHeight="50.0" fitWidth="50.0" layoutX="700.0" layoutY="280.0" onMouseClicked="#clickimgOffMusic" onMouseEntered="#enterimgOffMusic" onMouseExited="#exitimgOffMusic" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
