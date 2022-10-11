@@ -42,13 +42,6 @@ public class GameSurfaceController implements Initializable {
         imgOffMusic.setVisible(false);
 
         try {
-            GameState.initial();
-        } catch (Exception e) {
-            System.out.println(e);
-            e.printStackTrace();
-        }
-
-        try {
             objectContainer.getChildren().add(App.gameAttribute.getSceneSprites());
         } catch (Exception e) {
             System.out.println(e);

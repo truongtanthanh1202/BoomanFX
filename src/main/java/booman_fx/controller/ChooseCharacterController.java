@@ -1,6 +1,7 @@
 package booman_fx.controller;
 
 import booman_fx.Enum.TypePlayer;
+import booman_fx.game.GameState;
 import booman_fx.game.Images;
 import booman_fx.game.App;
 import booman_fx.objects.Character.Player.Player;
@@ -37,7 +38,12 @@ public class ChooseCharacterController implements Initializable {
 
     @FXML
     private void clickImageContinue() {
-//        TheGame.init();
+        try {
+            GameState.initial();
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
         App.setRoot("GameSurface");
     }
 

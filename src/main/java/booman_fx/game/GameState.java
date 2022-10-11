@@ -33,10 +33,11 @@ public class GameState extends GameAttribute {
 
     public GameState(int framesPerSecond) {
         super(framesPerSecond);
-        level = importLevelFromFile();
+        level = getLevel();
     }
 
     public static void initial() {
+        App.gameAttribute = new GameState(60);
         generateMap();
     }
 
@@ -82,18 +83,18 @@ public class GameState extends GameAttribute {
         }
     }
 
-    private int importLevelFromFile() {
-        String url = "src/main/resources/booman_fx/map/level-map.txt";
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(url);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        Scanner input = new Scanner(Objects.requireNonNull(fileInputStream));
-        String level = input.nextLine();
-
-        return (level.charAt(7) - '0' - 1);
-    }
+//    private int importLevelFromFile() {
+//        String url = "src/main/resources/booman_fx/map/level-map.txt";
+//        FileInputStream fileInputStream = null;
+//        try {
+//            fileInputStream = new FileInputStream(url);
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        Scanner input = new Scanner(Objects.requireNonNull(fileInputStream));
+//        String level = input.nextLine();
+//
+//        return (level.charAt(7) - '0' - 1);
+//    }
 }

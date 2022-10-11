@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class App extends Application {
-    public static GameAttribute gameAttribute = new GameState(60);
+    public static GameAttribute gameAttribute;
     public static Scene scene;
 
     @Override
