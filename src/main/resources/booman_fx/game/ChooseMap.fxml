@@ -3,23 +3,17 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="booman_fx.controller.ChooseMapController">
-    <ImageView fitHeight="600.0" fitWidth="860.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../picture/Menu.jpg"/>
-    </ImageView>
-    <ImageView fx:id="imageMap" fitHeight="430" fitWidth="620" layoutX="120" layoutY="55.0" pickOnBounds="true"
-               preserveRatio="true"/>
-    <ImageView fx:id="imageFront" fitHeight="80" fitWidth="300" layoutY="220.0" onMouseClicked="#clickImageFront"
-               onMouseEntered="#enterImageFront" onMouseExited="#exitImageFront" pickOnBounds="true"
-               preserveRatio="true"/>
-    <ImageView fx:id="imageBehind" fitHeight="80" fitWidth="300" layoutX="550.0" layoutY="220.0"
-               onMouseClicked="#clickImageBehind" onMouseEntered="#enterImageBehind" onMouseExited="#exitImageBehind"
-               pickOnBounds="true" preserveRatio="true"/>
-    <ImageView fx:id="imageContinue" fitHeight="80" fitWidth="300" layoutX="500" layoutY="500.0"
-               onMouseClicked="#clickImageContinue" onMouseEntered="#enterImageContinue"
-               onMouseExited="#exitImageContinue" pickOnBounds="true" preserveRatio="true"/>
-    <ImageView fx:id="imageNewGame" fitHeight="80" fitWidth="300" layoutX="80" layoutY="500.0"
-               onMouseClicked="#clickImageNewGame" onMouseEntered="#enterImageNewGame" onMouseExited="#exitImageNewGame"
-               pickOnBounds="true" preserveRatio="true"/>
+<AnchorPane prefHeight="600.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booman_fx.controller.ChooseMapController">
+   <children>
+       <ImageView fitHeight="600.0" fitWidth="860.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../picture/Menu.jpg" />
+          </image>
+       </ImageView>
+       <ImageView fx:id="imageMap" fitHeight="430" fitWidth="620" layoutX="120" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageFront" fitHeight="80" fitWidth="300" layoutX="-50.0" layoutY="220.0" onMouseClicked="#clickImageFront" onMouseEntered="#enterImageFront" onMouseExited="#exitImageFront" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageBehind" fitHeight="80" fitWidth="300" layoutX="610.0" layoutY="220.0" onMouseClicked="#clickImageBehind" onMouseEntered="#enterImageBehind" onMouseExited="#exitImageBehind" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageContinue" fitHeight="80" fitWidth="300" layoutX="500" layoutY="500.0" onMouseClicked="#clickImageContinue" onMouseEntered="#enterImageContinue" onMouseExited="#exitImageContinue" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageNewGame" fitHeight="80" fitWidth="300" layoutX="80" layoutY="500.0" onMouseClicked="#clickImageNewGame" onMouseEntered="#enterImageNewGame" onMouseExited="#exitImageNewGame" pickOnBounds="true" preserveRatio="true" />
+   </children>
 </AnchorPane>
