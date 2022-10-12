@@ -30,8 +30,7 @@ public class Map {
         map = new Square[height][width];
         this.width = width;
         this.height = height;
-//        num_box = NUM_BOX[level - 1];
-        num_box = NUM_BOX[0];
+        num_box = NUM_BOX[level - 1];
         setImage();
         randomMap();
     }

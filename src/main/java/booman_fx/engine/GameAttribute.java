@@ -15,7 +15,6 @@ public abstract class GameAttribute {
     private final int framesPerSecond;
 
     protected static Map spritesMap;
-    protected Player player;
     protected static int level = 1;
     protected boolean isNextLevel;
     protected final IntegerProperty timeLeft = new SimpleIntegerProperty(18000);
