@@ -8,15 +8,15 @@
    <children>
        <ImageView fitHeight="600.0" fitWidth="860.0" pickOnBounds="true" preserveRatio="true">
           <image>
-              <Image url="@../picture/Menu.png" />
+              <Image url="@../picture/Menu.jpg" />
           </image>
        </ImageView>
-       <ImageView fitHeight="214" fitWidth="800.0" layoutX="40.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../picture/TitleGame.png" />
-         </image>
+       <ImageView fitHeight="123.0" fitWidth="491.0" layoutX="8.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" rotate="-11.3">
+           <image>
+               <Image url="@../picture/TitleGame.png" />
+           </image>
       </ImageView>
-       <ImageView fx:id="imageStart" fitHeight="80" fitWidth="300" layoutX="120.0" layoutY="462.0" onMouseClicked="#clickImageStart" onMouseEntered="#enterImageStart" onMouseExited="#exitImageStart" pickOnBounds="true" preserveRatio="true" />
-       <ImageView fx:id="imageInstruct" fitHeight="80" fitWidth="300" layoutX="440.0" layoutY="462.0" onMouseClicked="#clickImageInstruct" onMouseEntered="#enterImageInstruct" onMouseExited="#exitImageInstruct" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageStart" fitHeight="80" fitWidth="300" layoutX="50.0" layoutY="332.0" onMouseClicked="#clickImageStart" onMouseEntered="#enterImageStart" onMouseExited="#exitImageStart" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageInstruct" fitHeight="80" fitWidth="300" layoutX="50.0" layoutY="432.0" onMouseClicked="#clickImageInstruct" onMouseEntered="#enterImageInstruct" onMouseExited="#exitImageInstruct" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

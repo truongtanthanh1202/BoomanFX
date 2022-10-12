@@ -5,15 +5,15 @@
 <AnchorPane prefHeight="600" prefWidth="860" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="booman_fx.controller.InstructionController">
     <ImageView fitHeight="600.0" fitWidth="860.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../picture/Menu.png"/>
+        <Image url="@../picture/Menu.jpg"/>
     </ImageView>
-    <ImageView fitHeight="457.0" fitWidth="723.0" layoutX="112.0" layoutY="72.0" pickOnBounds="true"
+    <ImageView fitHeight="457.0" fitWidth="723.0" layoutX="112.0" layoutY="30.0" pickOnBounds="true"
                preserveRatio="true">
         <Image url="@../picture/ImageControl.png"/>
     </ImageView>
-    <ImageView fx:id="imageBack" fitHeight="80.0" fitWidth="300.0" layoutY="520.0" onMouseClicked="#clickImageBack"
+    <ImageView fx:id="imageBack" fitHeight="80.0" fitWidth="300.0" layoutX="20.0" layoutY="500.0" onMouseClicked="#clickImageBack"
                onMouseEntered="#enterImageBack" onMouseExited="#exitImageBack" pickOnBounds="true" preserveRatio="true"/>
-    <ImageView fx:id="imagePowerUp" fitHeight="80.0" fitWidth="300.0" layoutX="560.0" layoutY="520.0"
+    <ImageView fx:id="imagePowerUp" fitHeight="80.0" fitWidth="300.0" layoutX="560.0" layoutY="500.0"
                onMouseClicked="#clickImagePowerUp" onMouseEntered="#enterImagePowerUp" onMouseExited="#exitImagePowerUp"
                pickOnBounds="true" preserveRatio="true"/>
 </AnchorPane>
