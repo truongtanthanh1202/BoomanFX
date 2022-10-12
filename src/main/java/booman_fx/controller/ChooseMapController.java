@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class ChooseMapController implements Initializable {
     private final Images[] listImageMap = Images.chooseMap;
     private final Images[] buttonContinue = Images.buttonContinue;
-    private final Images[] buttonNewGame = Images.buttonNewGame;
+    private final Images[] buttonNewGame = Images.buttonBack;
     private final Images[] buttonBehind = Images.buttonBehind;
     private final Images[] buttonFront = Images.buttonFront;
 

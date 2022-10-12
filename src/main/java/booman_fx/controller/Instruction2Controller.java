@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Instruction2Controller implements Initializable {
-    private final Images[] buttonControl = Images.buttonControl;
+    private final Images[] buttonControl = Images.buttonBack;
 
     @FXML
     ImageView imageControl;

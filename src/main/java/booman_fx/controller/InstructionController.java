@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 public class InstructionController implements Initializable {
     private final Images[] buttonBack = Images.buttonBack;
-    private final Images[] buttonPowerUp = Images.buttonPowerUp;
+    private final Images[] buttonPowerUp = Images.buttonContinue;
     @FXML
     ImageView imageBack, imagePowerUp;
 
