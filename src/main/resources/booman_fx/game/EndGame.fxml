@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="booman_fx.controller.EndGameController">
+   <children>
+       <ImageView blendMode="DARKEN" fitHeight="600.0" fitWidth="860.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@../picture/Menu.jpg" />
+          </image>
+       </ImageView>
+       <ImageView fx:id="imageNewGame" fitHeight="88.0" fitWidth="350.0" layoutX="265.0" layoutY="439.0" onMouseClicked="#clickImageNewGame" onMouseEntered="#enterImageNewGame" onMouseExited="#exitImageNewGame" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgStatus" fitHeight="240.0" fitWidth="240.0" layoutX="330.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+
+</AnchorPane>

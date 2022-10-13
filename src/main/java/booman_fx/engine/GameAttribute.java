@@ -16,6 +16,9 @@ public abstract class GameAttribute {
 
     protected static Map spritesMap;
     protected static int level = 1;
+
+    protected static Player player;
+
     protected boolean isNextLevel;
     protected final IntegerProperty timeLeft = new SimpleIntegerProperty(18000);
     protected static Audio musicGame;
@@ -48,6 +51,10 @@ public abstract class GameAttribute {
 
     public int getLevel() {
         return level;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     // update for all sprites in group sceneSprites

@@ -23,4 +23,9 @@ public class Player extends Character {
         super(Images.boomer[type.ordinal()][DOWN.ordinal()][0].getImage(),
                 xInMap, yInMap, PLAYER, Images.boomer[type.ordinal()]);
     }
+
+    @Override
+    public Image getImageInfo() {
+        return super.getImageInfo();
+    }
 }

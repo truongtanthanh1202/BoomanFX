@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
 <?import java.lang.*?>
@@ -33,5 +35,52 @@
             <ImageView fx:id="imgOffMusic" fitHeight="50.0" fitWidth="50.0" layoutX="700.0" layoutY="280.0" onMouseClicked="#clickimgOffMusic" onMouseEntered="#enterimgOffMusic" onMouseExited="#exitimgOffMusic" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Group>
+      <Label fx:id="labelLevelGame" layoutX="722.0" layoutY="387.0" lineSpacing="10.0" text="Level: #">
+         <font>
+            <Font name="SansSerif Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#b21bcd" />
+                  <Stop color="#b21bcd" offset="0.007246376811594203" />
+                  <Stop color="#100f36" offset="0.9202898550724637" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="714.0" layoutY="459.0" lineSpacing="10.0" text="Time Left">
+         <font>
+            <Font name="SansSerif Bold" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#b21bcd" />
+                  <Stop color="#b21bcd" offset="0.007246376811594203" />
+                  <Stop color="#100f36" offset="0.9202898550724637" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="labelTimeLeft" layoutX="745.0" layoutY="486.0" lineSpacing="10.0" text="###">
+         <font>
+            <Font name="SansSerif Bold" size="23.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#b21bcd" />
+                  <Stop color="#726075" offset="0.007246376811594203" />
+                  <Stop color="#100f36" offset="0.9202898550724637" />
+                  <Stop color="#21215b" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+<!--      <AnchorPane fx:id="imagePlayer" layoutX="700.0" layoutY="38.0" prefHeight="84.0" prefWidth="56.0" />-->
+      <ImageView fx:id="imgPlayer" fitHeight="84.0" fitWidth="56.0" layoutX="700.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

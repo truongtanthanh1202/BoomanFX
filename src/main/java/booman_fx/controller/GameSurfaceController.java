@@ -3,8 +3,11 @@ package booman_fx.controller;
 import booman_fx.game.App;
 import booman_fx.game.GameState;
 import booman_fx.game.Images;
+import booman_fx.objects.Character.Character;
+import booman_fx.objects.Character.Player.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,7 +28,10 @@ public class GameSurfaceController implements Initializable {
     private final Images[] btnOffMusic = Images.iconOffMusic;
 
     @FXML
-    private ImageView imgHome, imgOnMusic, imgOffMusic, imgOnSoundEffect, imgOffSoundEffect, imgPause, imgContinue;
+    private ImageView imgPlayer, imgHome, imgOnMusic, imgOffMusic, imgOnSoundEffect, imgOffSoundEffect, imgPause, imgContinue;
+
+    @FXML
+    Label labelLevelGame, labelTimeLeft;
 
     @FXML
     AnchorPane objectContainer;
@@ -40,6 +46,14 @@ public class GameSurfaceController implements Initializable {
         imgContinue.setVisible(false);
         imgOffSoundEffect.setVisible(false);
         imgOffMusic.setVisible(false);
+
+        try {
+            imgPlayer.setImage(App.gameAttribute.getPlayer().getImage());
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println(App.gameAttribute.getPlayer());
+        }
+
 
         try {
             objectContainer.getChildren().add(App.gameAttribute.getSceneSprites());

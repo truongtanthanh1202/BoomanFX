@@ -75,9 +75,7 @@ public class GameState extends GameAttribute {
                     Enemy.createEnemy(w, h);
                 }
                 else if (spritesMap.getMap()[h][w].getTypeSprite(PLAYER)) {
-                    Player.createPlayer(w, h);
-//                    player = Player.createPlayer(w, h);
-//                    setInput();
+                    player = Player.createPlayer(w, h);
                 }
             }
         }
