@@ -190,11 +190,20 @@ public class Map {
     }
 
     //check có tồn tại 1 tường khép kín trong 1 map này không
+    //dùng lan, để tìm xem 1 ô không đi vào được
+    /**
+     *  i = 0, check ô bên phải (của ô đang check)
+     */
+    //public static final int[] dx = {-1, 1, 0, 0};
+    //public static final int[] dy = {0, 0, 1, -1};
     private void dfs(int h, int w, boolean[][] visited) {
         visited[h][w] = true;
         for (int i = 0; i < 4; ++i) {
             int _h = h + dy[i];
             int _w = w + dx[i];
+            //nếu lan đến 1 ô thì không lan nữa
+            //nếu ô trong 1 bảng thì lan đến
+            //nếu ô đấy là WAll thì không lan đến
             if (0 <= _h && !visited[_h][_w]
                     && _h < height && 0 <= _w && _w < width
                     && !map[_h][_w].getTypeSprite(WALL)) {
