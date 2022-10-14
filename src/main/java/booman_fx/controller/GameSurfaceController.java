@@ -47,6 +47,13 @@ public class GameSurfaceController implements Initializable {
         imgOffSoundEffect.setVisible(false);
         imgOffMusic.setVisible(false);
 
+        labelLevelGame.setText("Level: " + App.gameAttribute.getLevel());
+        labelTimeLeft.setText("300"); // Sửa lại để count down về 1
+        App.gameAttribute.getTimeLeft().addListener((observableValue, oldValue, newValue) ->
+        {
+            labelTimeLeft.setText("" + (int) newValue/ App.gameAttribute.getFramesPerSecond());
+        });
+
         try {
             imgPlayer.setImage(App.gameAttribute.getPlayer().getImage());
         } catch (Exception e) {

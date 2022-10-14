@@ -82,5 +82,25 @@
       </Label>
 <!--      <AnchorPane fx:id="imagePlayer" layoutX="700.0" layoutY="38.0" prefHeight="84.0" prefWidth="56.0" />-->
       <ImageView fx:id="imgPlayer" fitHeight="84.0" fitWidth="56.0" layoutX="700.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelLive" layoutX="810.0" layoutY="32.0" lineSpacing="10.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelBoomPower" layoutX="810.0" layoutY="56.0" lineSpacing="10.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelBooms" layoutX="810.0" layoutY="83.0" lineSpacing="10.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSpeed" layoutX="810.0" layoutY="108.0" lineSpacing="10.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="SansSerif Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -34,7 +34,8 @@ public class GameState extends GameAttribute {
     }
 
     public static void initial() {
-        App.gameAttribute = new GameState(60);
+        App.gameAttribute = new GameState(fps);
+        App.gameAttribute.begin();
         generateMap();
     }
 
@@ -50,6 +51,24 @@ public class GameState extends GameAttribute {
         sceneSprites.getChildren().removeAll(sprites);
         Collections.sort(sprites);
         sceneSprites.getChildren().addAll(sprites);
+    }
+
+    @Override
+    protected void checkNextLevel() {
+
+    }
+
+    @Override
+    protected void checkEndGame() {
+        timeLeft.setValue(timeLeft.get() - 1);
+        if (timeLeft.get() < 0) {
+            App.setRoot("EndGame");
+        }
+    }
+
+    @Override
+    protected void checkWinGame() {
+
     }
 
     private static void generateMap() {
@@ -90,4 +109,6 @@ public class GameState extends GameAttribute {
         }
         return levelGame;
     }
+
+
 }
