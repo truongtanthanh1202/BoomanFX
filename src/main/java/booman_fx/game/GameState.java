@@ -9,11 +9,9 @@ import booman_fx.objects.*;
 import booman_fx.objects.Character.Enemy.Enemy;
 import booman_fx.objects.Character.Player.Player;
 //import booman_fx.objects.Character.Enemy.Enemy;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +19,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static booman_fx.Enum.TypeSprite.*;
-import static booman_fx.game.App.setRoot;
 //import static booman_fx.Enum.StatusGame.*;
 
 public class GameState extends GameAttribute {
@@ -33,7 +30,7 @@ public class GameState extends GameAttribute {
 
     public GameState(int framesPerSecond) {
         super(framesPerSecond);
-        level = getLevel();
+        level = importLevelFromFile();
     }
 
     public static void initial() {
@@ -81,18 +78,16 @@ public class GameState extends GameAttribute {
         }
     }
 
-//    private int importLevelFromFile() {
-//        String url = "src/main/resources/booman_fx/map/level-map.txt";
-//        FileInputStream fileInputStream = null;
-//        try {
-//            fileInputStream = new FileInputStream(url);
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        Scanner input = new Scanner(Objects.requireNonNull(fileInputStream));
-//        String level = input.nextLine();
-//
-//        return (level.charAt(7) - '0' - 1);
-//    }
+    private static int importLevelFromFile(){
+        int levelGame = 0;
+        try {
+            FileInputStream fileInputStream = new FileInputStream("src/main/resources/booman_fx/map/level-map.txt");
+            Scanner input = new Scanner(Objects.requireNonNull(fileInputStream));
+            String level = input.nextLine();
+            levelGame = level.charAt(7) - '0' - 0;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return levelGame;
+    }
 }

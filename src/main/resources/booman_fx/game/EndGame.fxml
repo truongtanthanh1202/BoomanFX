@@ -13,8 +13,8 @@
               <Image url="@../picture/Menu.jpg" />
           </image>
        </ImageView>
-       <ImageView fx:id="imageNewGame" fitHeight="88.0" fitWidth="350.0" layoutX="265.0" layoutY="439.0" onMouseClicked="#clickImageNewGame" onMouseEntered="#enterImageNewGame" onMouseExited="#exitImageNewGame" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imgStatus" fitHeight="240.0" fitWidth="240.0" layoutX="330.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageNewGame" fitHeight="88.0" fitWidth="350.0" layoutX="285.0" layoutY="410.0" onMouseClicked="#clickImageNewGame" onMouseEntered="#enterImageNewGame" onMouseExited="#exitImageNewGame" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgStatus" fitHeight="261.0" fitWidth="284.0" layoutX="308.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 
 </AnchorPane>
