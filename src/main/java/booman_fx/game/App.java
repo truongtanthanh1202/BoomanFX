@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         //scene dùng để load file Menu.fxml
-        scene = new Scene(Objects.requireNonNull(loadFXML("EndGame")));
+        scene = new Scene(Objects.requireNonNull(loadFXML("Menu")));
         stage.setTitle("BoomanFX");
         stage.setScene(scene);
         stage.show();

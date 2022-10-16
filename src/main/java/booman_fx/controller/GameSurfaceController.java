@@ -99,7 +99,11 @@ public class GameSurfaceController implements Initializable {
         imgOffSoundEffect.setImage(btnOffSoundEffect[1].getImage());
         imgOffSoundEffect.setVisible(true);
         imgOnSoundEffect.setVisible(false);
-//        App.gameAttribute.getSoundEffectGame().pause();
+        try {
+            App.gameAttribute.getSoundEffectGame().pause();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void enterimgOnSoundEffect(MouseEvent mouseEvent) {
@@ -114,7 +118,11 @@ public class GameSurfaceController implements Initializable {
         imgOffMusic.setImage(btnOffMusic[1].getImage());
         imgOffMusic.setVisible(true);
         imgOnMusic.setVisible(false);
-//        App.gameAttribute.getMusicGame().pause();
+        try {
+            App.gameAttribute.getMusicGame().pause();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void enterimgOnMusic(MouseEvent mouseEvent) {
@@ -141,7 +149,12 @@ public class GameSurfaceController implements Initializable {
     public void clickimgOffMusic(MouseEvent mouseEvent) {
         imgOffMusic.setVisible(false);
         imgOnMusic.setVisible(true);
-//        App.gameAttribute.getMusicGame().play();
+        try {
+            App.gameAttribute.getMusicGame().play();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     public void enterimgOffMusic(MouseEvent mouseEvent) {
@@ -155,7 +168,11 @@ public class GameSurfaceController implements Initializable {
     public void clickimgOffSoundEffect(MouseEvent mouseEvent) {
         imgOffSoundEffect.setVisible(false);
         imgOnSoundEffect.setVisible(true);
-//        App.gameAttribute.getSoundEffectGame().play();
+        try {
+            App.gameAttribute.getSoundEffectGame().play();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void enterimgOffSoundEffect(MouseEvent mouseEvent) {
