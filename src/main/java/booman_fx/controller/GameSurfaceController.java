@@ -70,6 +70,7 @@ public class GameSurfaceController implements Initializable {
     }
 
     public void clickImgHome(MouseEvent mouseEvent) {
+        App.gameAttribute.shutdown();
         App.setRoot("Menu");
     }
 
