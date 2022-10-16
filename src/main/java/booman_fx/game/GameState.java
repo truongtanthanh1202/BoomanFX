@@ -62,6 +62,8 @@ public class GameState extends GameAttribute {
     protected void checkEndGame() {
         timeLeft.setValue(timeLeft.get() - 1);
         if (timeLeft.get() < 0) {
+            sleep(1);
+            pause();
             App.setRoot("EndGame");
         }
     }
@@ -110,5 +112,13 @@ public class GameState extends GameAttribute {
         return levelGame;
     }
 
-
+    private void sleep(int second) {
+        if (spritesMap != null) {
+            try {
+                Thread.sleep(second*1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

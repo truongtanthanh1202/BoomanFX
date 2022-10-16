@@ -26,7 +26,7 @@ public abstract class GameAttribute {
     protected static Player player;
 
     protected boolean isNextLevel;
-    protected final IntegerProperty timeLeft = new SimpleIntegerProperty(60*50); //60 mean fps of game
+    protected final IntegerProperty timeLeft = new SimpleIntegerProperty(60*20); //60 mean fps of game
     protected static Audio musicGame;
     protected static Audio soundEffectGame;
 
