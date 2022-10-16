@@ -86,6 +86,7 @@ public class GameSurfaceController implements Initializable {
         imgContinue.setImage(btnContinue[1].getImage());
         imgContinue.setVisible(true);
         imgPause.setVisible(false);
+        App.gameAttribute.pause();
     }
 
     public void enterimgPause(MouseEvent mouseEvent) {
@@ -137,6 +138,7 @@ public class GameSurfaceController implements Initializable {
     public void clickimgContinue(MouseEvent mouseEvent) {
         imgContinue.setVisible(false);
         imgPause.setVisible(true);
+        App.gameAttribute.begin();
     }
 
     public void enterimgContinue(MouseEvent mouseEvent) {
