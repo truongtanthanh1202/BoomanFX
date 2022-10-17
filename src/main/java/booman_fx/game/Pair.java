@@ -1,4 +1,4 @@
-package booman_fx.controller;
+package booman_fx.game;
 
 import java.util.Objects;
 

@@ -1,7 +1,6 @@
 package booman_fx.game;
 
 import booman_fx.Enum.TypeMap;
-import booman_fx.controller.Pair;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
