@@ -36,4 +36,5 @@ public abstract class Item extends Sprite{
     public void update() {
         setImage(imageItem[(int) (new Date().getTime() / 400) % 2 + 1].getImage());
     }
+    public abstract void powerUp(Character character);
 }
