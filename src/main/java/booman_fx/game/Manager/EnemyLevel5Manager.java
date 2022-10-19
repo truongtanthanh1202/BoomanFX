@@ -1,9 +1,9 @@
-package booman_fx.controller;
+package booman_fx.game.Manager;
 
 import booman_fx.objects.Character.Enemy;
 
-public class EnemyLevel5Controller extends EnemyController {
-    public EnemyLevel5Controller(Enemy enemy) {
+public class EnemyLevel5Manager extends EnemyManager {
+    public EnemyLevel5Manager(Enemy enemy) {
         super(enemy);
     }
 

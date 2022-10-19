@@ -1,6 +1,7 @@
 package booman_fx.game;
 
 //import booman_fx.Enum.StatusGame;
+import booman_fx.Enum.StatusGame;
 import booman_fx.engine.GameAttribute;
 import booman_fx.engine.Sprite;
 import booman_fx.game.GameResources.GameMusic;
@@ -19,6 +20,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static booman_fx.Enum.TypeSprite.*;
+import static booman_fx.game.App.setRoot;
 //import static booman_fx.Enum.StatusGame.*;
 
 public class GameState extends GameAttribute {
@@ -64,7 +66,7 @@ public class GameState extends GameAttribute {
         if (timeLeft.get() < 0) {
             sleep(1);
             pause();
-            App.setRoot("EndGame");
+            setRoot("EndGame");
         }
     }
 
@@ -96,6 +98,23 @@ public class GameState extends GameAttribute {
                     player = Player.createPlayer(w, h);
                 }
             }
+        }
+    }
+
+    public void spawn(Sprite sprite) {
+        super.spawn(sprite);
+        spritesMap.addSprite(sprite);
+    }
+
+    protected void nextLevel() {
+        if (isNextLevel) {
+            sceneSprites.getChildren().clear();
+            isNextLevel = false;
+            level++;
+            StatusGame.setPlay(this);
+            timeLeft.setValue(18000);
+            generateMap();
+            setRoot("GameSurface");
         }
     }
 

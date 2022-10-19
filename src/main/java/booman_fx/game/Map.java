@@ -339,6 +339,17 @@ public class Map {
         return map;
     }
 
+    public Pair findEmptySquare() {
+        Random random = new Random();
+        int w, h;
+        do {
+            w = Math.abs(random.nextInt()) % width;
+            h = Math.abs(random.nextInt()) % height;
+        }
+        while (!map[h][w].checkEmpty());
+        return new Pair(w, h);
+    }
+
 //    public static void main(String[] args) {
 //        int level = 1;
 //        Map m = new Map(WIDTH / SIZE_A_SQUARE, HEIGHT / SIZE_A_SQUARE, level);

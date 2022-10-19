@@ -1,4 +1,4 @@
-package booman_fx .controller;
+package booman_fx.game.Manager;
 
 import booman_fx.Enum.Direction;
 import booman_fx.Enum.TypeSprite;
@@ -12,7 +12,7 @@ import java.util.*;
 import static booman_fx.Enum.Direction.*;
 import static booman_fx.Enum.TypeSprite.*;
 
-public abstract class EnemyController {
+public abstract class EnemyManager {
     // this enemy to control
     protected final Enemy enemy;
 
@@ -23,7 +23,7 @@ public abstract class EnemyController {
 
     protected Direction direction;
 
-    public EnemyController(Enemy enemy) {
+    public EnemyManager(Enemy enemy) {
         this.enemy = enemy;
         // way to move
         nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());

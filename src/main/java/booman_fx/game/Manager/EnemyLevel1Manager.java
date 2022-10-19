@@ -1,11 +1,11 @@
-package booman_fx.controller;
+package booman_fx.game.Manager;
 
 import booman_fx.objects.Character.Enemy;
 
 import static booman_fx.Enum.TypeSprite.*;
 
-public class EnemyLevel1Controller extends EnemyController {
-    public EnemyLevel1Controller(Enemy enemy) {
+public class EnemyLevel1Manager extends EnemyManager {
+    public EnemyLevel1Manager(Enemy enemy) {
         super(enemy);
     }
 
