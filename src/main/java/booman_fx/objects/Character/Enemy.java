@@ -1,4 +1,4 @@
-package booman_fx.objects.Character.Enemy;
+package booman_fx.objects.Character;
 
 import booman_fx.Enum.TypeSprite;
 import booman_fx.game.App;

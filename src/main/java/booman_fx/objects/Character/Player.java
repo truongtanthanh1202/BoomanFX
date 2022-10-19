@@ -1,4 +1,4 @@
-package booman_fx.objects.Character.Player;
+package booman_fx.objects.Character;
 
 import booman_fx.Enum.TypePlayer;
 import booman_fx.Enum.TypeSprite;
