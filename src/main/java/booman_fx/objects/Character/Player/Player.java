@@ -1,7 +1,6 @@
-package booman_fx.objects.Character;
+package booman_fx.objects.Character.Player;
 
 import booman_fx.Enum.TypePlayer;
-import booman_fx.Enum.TypeSprite;
 import booman_fx.game.App;
 import booman_fx.game.Images;
 import booman_fx.objects.Character.Character;

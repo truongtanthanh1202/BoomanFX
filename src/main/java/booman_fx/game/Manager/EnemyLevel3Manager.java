@@ -1,6 +1,6 @@
 package booman_fx.game.Manager;
 
-import booman_fx.objects.Character.Enemy;
+import booman_fx.objects.Character.Enemy.Enemy;
 
 public class EnemyLevel3Manager extends EnemyManager {
     public EnemyLevel3Manager(Enemy enemy) {

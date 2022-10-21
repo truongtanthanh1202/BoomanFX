@@ -16,8 +16,8 @@ module bom_it.game {
     opens booman_fx.game.Manager to javafx.fxml;
 //    exports booman_fx.objects;
 //    exports booman_fx.Enum;
-//    exports booman_fx.objects.Character.Enemy;
-//    opens booman_fx.objects.Character.Enemy to javafx.fxml;
+//    exports booman_fx.objects.Character.Enemy.Enemy;
+//    opens booman_fx.objects.Character.Enemy.Enemy to javafx.fxml;
 //    exports booman_fx.objects.Item;
 //    opens booman_fx.objects.Item to javafx.fxml;
 //    exports booman_fx.objects.Character;

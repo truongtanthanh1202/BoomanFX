@@ -1,4 +1,4 @@
-package booman_fx.objects.Character;
+package booman_fx.objects.Character.Enemy;
 
 import booman_fx.game.Manager.EnemyLevel2Manager;
 import booman_fx.objects.Item.HeartItem;

@@ -4,7 +4,7 @@ import booman_fx.Enum.Direction;
 import booman_fx.Enum.TypeSprite;
 import booman_fx.game.App;
 import booman_fx.game.Map;
-import booman_fx.objects.Character.Enemy;
+import booman_fx.objects.Character.Enemy.Enemy;
 import booman_fx.game.Pair;
 
 import java.util.*;

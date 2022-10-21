@@ -7,12 +7,11 @@ import booman_fx.engine.Sprite;
 import booman_fx.game.GameResources.GameMusic;
 import booman_fx.game.GameResources.SoundEffect;
 import booman_fx.objects.*;
-import booman_fx.objects.Character.Enemy;
-import booman_fx.objects.Character.Player;
-//import booman_fx.objects.Character.Enemy.Enemy;
+import booman_fx.objects.Character.Enemy.Enemy;
+import booman_fx.objects.Character.Player.Player;
+//import booman_fx.objects.Character.Enemy.Enemy.Enemy;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

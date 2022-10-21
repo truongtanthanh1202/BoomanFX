@@ -1,9 +1,11 @@
-package booman_fx.objects.Character;
+package booman_fx.objects.Character.Enemy;
 
 import booman_fx.Enum.StatusCharacter;
 import booman_fx.game.Manager.EnemyLevel1Manager;
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
+import booman_fx.objects.Character.Character;
+import booman_fx.objects.Character.Player.Player;
 import booman_fx.objects.Item.HeartItem;
 import booman_fx.objects.Item.Item;
 

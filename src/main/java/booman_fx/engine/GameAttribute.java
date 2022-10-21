@@ -1,7 +1,7 @@
 package booman_fx.engine;
 
 import booman_fx.game.Map;
-import booman_fx.objects.Character.Player;
+import booman_fx.objects.Character.Player.Player;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

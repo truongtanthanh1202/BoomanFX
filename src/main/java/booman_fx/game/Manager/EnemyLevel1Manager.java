@@ -1,6 +1,6 @@
 package booman_fx.game.Manager;
 
-import booman_fx.objects.Character.Enemy;
+import booman_fx.objects.Character.Enemy.Enemy;
 
 import static booman_fx.Enum.TypeSprite.*;
 
