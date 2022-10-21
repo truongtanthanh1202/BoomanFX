@@ -1,6 +1,7 @@
 package booman_fx.game;
 
 //import booman_fx.Enum.StatusGame;
+import booman_fx.Enum.StatusGame;
 import booman_fx.engine.GameAttribute;
 import booman_fx.engine.Sprite;
 import booman_fx.game.GameResources.GameMusic;
@@ -8,10 +9,9 @@ import booman_fx.game.GameResources.SoundEffect;
 import booman_fx.objects.*;
 import booman_fx.objects.Character.Enemy.Enemy;
 import booman_fx.objects.Character.Player.Player;
-//import booman_fx.objects.Character.Enemy.Enemy;
+//import booman_fx.objects.Character.Enemy.Enemy.Enemy;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +19,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import static booman_fx.Enum.TypeSprite.*;
+import static booman_fx.game.App.setRoot;
 //import static booman_fx.Enum.StatusGame.*;
 
 public class GameState extends GameAttribute {
@@ -64,7 +65,7 @@ public class GameState extends GameAttribute {
         if (timeLeft.get() < 0) {
             sleep(1);
             pause();
-            App.setRoot("EndGame");
+            setRoot("EndGame");
         }
     }
 
@@ -96,6 +97,23 @@ public class GameState extends GameAttribute {
                     player = Player.createPlayer(w, h);
                 }
             }
+        }
+    }
+
+    public void spawn(Sprite sprite) {
+        super.spawn(sprite);
+        spritesMap.addSprite(sprite);
+    }
+
+    protected void nextLevel() {
+        if (isNextLevel) {
+            sceneSprites.getChildren().clear();
+            isNextLevel = false;
+            level++;
+            StatusGame.setPlay(this);
+            timeLeft.setValue(18000);
+            generateMap();
+            setRoot("GameSurface");
         }
     }
 
