@@ -1,12 +1,19 @@
 package booman_fx.game;
 
+import booman_fx.Enum.Direction;
 import booman_fx.Enum.TypeMap;
+import booman_fx.Enum.TypeSprite;
+import booman_fx.game.Pair;
+import booman_fx.engine.Sprite;
+import booman_fx.objects.Bomb;
+import booman_fx.objects.Item.PowerItem;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static booman_fx.Enum.Direction.*;
 import static booman_fx.Enum.TypeSprite.*;
 import static booman_fx.game.GameState.*;
 
@@ -24,6 +31,28 @@ public class Map {
     private final int width;
     private final int height;
     private int num_box;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void addSprite(Sprite sprite) {
+        map[sprite.getYInMap()][sprite.getXInMap()].add(sprite.getTypeSprite());
+        if (sprite instanceof Bomb) {
+            map[sprite.getYInMap()][sprite.getXInMap()].setPowerBomb(((Bomb) sprite).getPower());
+        }
+    }
+
+    public void removeSprite(Sprite sprite) {
+        map[sprite.getYInMap()][sprite.getXInMap()].remove(sprite.getTypeSprite());
+        if (sprite instanceof Bomb) {
+            map[sprite.getYInMap()][sprite.getXInMap()].setPowerBomb(((Bomb) sprite).getPower());
+        }
+    }
 
     public Map(int width, int height, int level) {
         map = new Square[height][width];
@@ -262,6 +291,38 @@ public class Map {
         outputStream.close();
     }
 
+    public boolean checkSquareInMap(int x, int y) {
+        return (0 <= x && x < width && 0 < y && y < height);
+    }
+
+    private boolean checkDangerInDirection(int x, int y, Direction direct) {
+        for (int i = 1; i <= PowerItem.MAX_POWER_ITEM; ++i) {
+            x += dx[direct.ordinal()];
+            y += dy[direct.ordinal()];
+
+            if (!checkSquareInMap(x, y)) {
+                break;
+            }
+
+            if (!map[y][x].checkNotExist(new TypeSprite[]{BOX, BOMB, WALL})) {
+                return (map[y][x].getPowerBomb() >= i);
+            }
+        }
+        return false;
+    }
+
+    // check this square in map is dangerous ?
+    public boolean checkDanger(int x, int y) {
+        if (map[y][x].getTypeSprite(BOMB)) {
+            return true;
+        }
+
+        return checkDangerInDirection(x, y, LEFT)
+                || checkDangerInDirection(x, y, RIGHT)
+                || checkDangerInDirection(x, y, UP)
+                || checkDangerInDirection(x, y, DOWN);
+    }
+
     public Images getBackground() {
         return background;
     }
@@ -276,6 +337,17 @@ public class Map {
 
     public Square[][] getMap() {
         return map;
+    }
+
+    public Pair findEmptySquare() {
+        Random random = new Random();
+        int w, h;
+        do {
+            w = Math.abs(random.nextInt()) % width;
+            h = Math.abs(random.nextInt()) % height;
+        }
+        while (!map[h][w].checkEmpty());
+        return new Pair(w, h);
     }
 
 //    public static void main(String[] args) {

@@ -13,8 +13,11 @@ import javafx.util.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static booman_fx.Enum.StatusGame.PLAY;
+
 public abstract class GameAttribute {
     // where contain all objects
+    public static int TIME_LWP = 2;
     protected final Group sceneSprites;
     private final int framesPerSecond;
 
@@ -29,6 +32,21 @@ public abstract class GameAttribute {
     protected final IntegerProperty timeLeft = new SimpleIntegerProperty(60*20); //60 mean fps of game
     protected static Audio musicGame;
     protected static Audio soundEffectGame;
+    protected final IntegerProperty status = new SimpleIntegerProperty(PLAY.ordinal());
+    protected int timeLWP;
+
+    public int getTimeLWP() {
+        return timeLWP;
+    }
+
+    public void setTimeLWP(int timeLWP) {
+        this.timeLWP = timeLWP;
+    }
+
+    public void setStatus(int status) {
+        this.status.setValue(status);
+    }
+
 
     public GameAttribute(int framesPerSecond) {
         this.framesPerSecond = framesPerSecond;
