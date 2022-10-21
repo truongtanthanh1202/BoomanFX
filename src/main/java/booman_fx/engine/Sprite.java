@@ -69,7 +69,6 @@ public abstract class Sprite extends ImageView implements Comparable<Sprite> {
     }
 
     public boolean checkCollision(Sprite other) {
-//        return collisionBound.getBoundsInLocal().intersects(other.collisionBound.getBoundsInLocal());
         return Math.max(collisionBound.getX(), other.collisionBound.getX())
                 < Math.min(collisionBound.getX() + collisionBound.getWidth(), other.collisionBound.getX() + other.collisionBound.getWidth())
                 && Math.max(collisionBound.getY(), other.collisionBound.getY())
