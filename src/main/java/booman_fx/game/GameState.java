@@ -21,7 +21,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import static booman_fx.Enum.StatusGame.PAUSE;
+import static booman_fx.Enum.StatusGame.*;
 import static booman_fx.Enum.TypeSprite.*;
 import static booman_fx.game.App.setRoot;
 //import static booman_fx.Enum.StatusGame.*;
@@ -59,8 +59,32 @@ public class GameState extends GameAttribute {
     }
 
     @Override
-    protected void checkNextLevel() {
+    protected void nextLevel() {
+        if (isNextLevel) {
+            sceneSprites.getChildren().clear();
+            isNextLevel = false;
+            level++;
+            StatusGame.setPlay(this);
+            timeLeft.setValue(18000);
+            generateMap();
+            setRoot("GameSurface");
+            begin();
+        }
+    }
 
+    @Override
+    protected void checkNextLevel() {
+        if (status.getValue() == PASS_LEVEL.ordinal()) {
+            sleep(1);
+            isNextLevel = true;
+            pause();
+            setRoot("ChooseMap");
+            return;
+        }
+
+        if (spritesMap == null || spritesMap.getMap()[player.getYInMap()][player.getXInMap()].getTypeSprite(PORTAL)) {
+            StatusGame.setPassLevel(this);
+        }
     }
 
     @Override

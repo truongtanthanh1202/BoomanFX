@@ -73,8 +73,8 @@ public class GameSurfaceController implements Initializable {
         }
 
         App.gameAttribute.statusProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (newValue.intValue() == LOSS.ordinal()) {
-                imageStatusGame.setImage(imgStatus[0].getImage());
+            if (newValue.intValue() != PLAY.ordinal() && newValue.intValue() != PAUSE.ordinal()) {
+                imageStatusGame.setImage(imgStatus[newValue.intValue()].getImage());
             }
         });
     }

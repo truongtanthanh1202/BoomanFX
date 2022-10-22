@@ -56,6 +56,9 @@ public abstract class GameAttribute {
             checkEndGame();
             checkNextLevel();
             checkWinGame();
+
+            nextLevel();
+            checkNextLevel();
         });
 
         gameLoop = new Timeline();
@@ -114,6 +117,8 @@ public abstract class GameAttribute {
     }
 
     protected abstract void showSprites();
+
+    protected abstract void nextLevel();
 
     protected abstract void checkNextLevel();
 
