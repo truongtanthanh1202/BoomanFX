@@ -27,7 +27,7 @@ public abstract class Character extends Sprite {
 
     private final double VELOCITY = 0.3;
 
-    private final Bomb[] onBomb;
+    public final Bomb[] onBomb;
     protected final IntegerProperty lives = new SimpleIntegerProperty(1);
     protected final IntegerProperty numBomb = new SimpleIntegerProperty(1);
     protected final IntegerProperty powerBomb = new SimpleIntegerProperty(1);
@@ -222,7 +222,7 @@ public abstract class Character extends Sprite {
                     collisionExplode();
                 } else if (sprite instanceof Bomb) {
                     if (sprite != onBomb[0] && sprite != onBomb[1]) {
-                        backStep();
+                        moveBack();
                     } else {
                         if (sprite == onBomb[0]) {
                             collisionBomb[0] = true;
@@ -230,24 +230,13 @@ public abstract class Character extends Sprite {
                             collisionBomb[1] = true;
                         }
                     }
-                } else if (sprite instanceof Item) {
-                    collisionItem((Item) sprite);
                 }
             }
         }
 
-        if (onBomb[0] != null && !collisionBomb[0]) {
-            onBomb[0] = null;
-        }
-
-        if (onBomb[1] != null && !collisionBomb[1]) {
-            onBomb[1] = null;
-        }
-
-        if (onBomb[1] != null && onBomb[0] == null) {
-            onBomb[0] = onBomb[1];
-            onBomb[1] = null;
-        }
+//        if (onBomb[0] != null && !collisionBomb[0]) {
+//            onBomb[0] = null;
+//        }
     }
 
     protected void collisionItem(Item item) {
@@ -255,16 +244,20 @@ public abstract class Character extends Sprite {
         item.handleDeath();
     }
 
+    protected void collisionBomb() {
+        moveBack();
+    }
+
     protected void collisionExplode() {
         handleDeath();
     }
 
     protected void collisionWall() {
-        backStep();
+        moveBack();
     }
 
     protected void collisionBox() {
-        backStep();
+        moveBack();
     }
 
     @Override
@@ -297,7 +290,7 @@ public abstract class Character extends Sprite {
     }
 
     // back the previous step.
-    protected void backStep() {
+    protected void moveBack() {
         if (moveUp) {
             move(0, VELOCITY * powerSpeed.getValue());
         }

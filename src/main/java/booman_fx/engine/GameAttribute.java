@@ -29,10 +29,10 @@ public abstract class GameAttribute {
     protected static Player player;
 
     protected boolean isNextLevel;
-    protected final IntegerProperty timeLeft = new SimpleIntegerProperty(60*20); //60 mean fps of game
+    protected final IntegerProperty timeLeft = new SimpleIntegerProperty(60*300); //60 mean fps of game
     protected static Audio musicGame;
     protected static Audio soundEffectGame;
-    protected final IntegerProperty status = new SimpleIntegerProperty(PLAY.ordinal());
+    protected static final IntegerProperty status = new SimpleIntegerProperty(PLAY.ordinal());
     protected int timeLWP;
 
     public int getTimeLWP() {
@@ -59,6 +59,7 @@ public abstract class GameAttribute {
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, actionEvent -> {
             updateSprites();
             showSprites();
+            checkCollision();
             checkEndGame();
             checkNextLevel();
             checkWinGame();
@@ -105,6 +106,11 @@ public abstract class GameAttribute {
     protected void updateSprites() {
         sprites().forEach(Sprite::update);
     }
+
+    protected void checkCollision() {
+        sprites().forEach(Sprite::executeCollision);
+    }
+
 
     public void spawn(Sprite sprite) {
         sceneSprites.getChildren().add(sprite);
