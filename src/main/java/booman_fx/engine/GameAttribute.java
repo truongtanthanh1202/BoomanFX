@@ -22,7 +22,7 @@ public abstract class GameAttribute {
     private Timeline gameLoop;
 
     protected static Map spritesMap;
-    protected static int level = 1;
+    protected static int level;
 
     protected static Player player;
 
