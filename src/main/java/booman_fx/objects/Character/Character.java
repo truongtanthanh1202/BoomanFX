@@ -13,7 +13,6 @@ import booman_fx.objects.Wall;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
-
 import java.util.Date;
 
 import static booman_fx.Enum.Direction.*;
