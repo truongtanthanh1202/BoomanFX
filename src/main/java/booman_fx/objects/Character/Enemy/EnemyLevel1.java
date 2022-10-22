@@ -22,7 +22,8 @@ public class EnemyLevel1 extends Enemy {
         super.executeCollision();
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite) && sprite instanceof Player && ((Player) sprite).getStatus() != IMMORTAL) {
-                StatusCharacter.setStunned((Character) sprite);
+                Character newP = (Character) sprite;
+                newP.handleDeath();
             }
         }
     }
