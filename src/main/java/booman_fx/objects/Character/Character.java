@@ -38,7 +38,6 @@ public abstract class Character extends Sprite {
     private boolean moveRight = false;
 
     private double immortalTime;
-    private double stunnedTime;
     protected StatusCharacter status = MOVE;
 
     // getter and setter
@@ -106,10 +105,6 @@ public abstract class Character extends Sprite {
         return imageCharacter[DOWN.ordinal()][0].getImage();
     }
 
-    public void setStunnedTime(double stunnedTime) {
-        this.stunnedTime = stunnedTime;
-    }
-
     public void setImmortalTime(double immortalTime) {
         this.immortalTime = immortalTime;
     }
@@ -169,14 +164,6 @@ public abstract class Character extends Sprite {
             setVisible(true);
         }
 
-        if (status == STUNNED) {
-            stunnedTime -= 1.0 / App.gameAttribute.getFramesPerSecond();
-            if (stunnedTime <= 0) {
-                StatusCharacter.setMove(this);
-            }
-            return;
-        }
-
         if (moveUp || moveLeft || moveDown || moveRight) {
             App.gameAttribute.getSpritesMap().removeSprite(this);
         }
@@ -217,7 +204,7 @@ public abstract class Character extends Sprite {
                     collisionWall();
                 } else if (sprite instanceof Box) {
                     collisionBox();
-                } else if (sprite instanceof Explode && status != IMMORTAL) {
+                } else if (sprite instanceof Explode) {
                     collisionExplode();
                 } else if (sprite instanceof Bomb) {
                     if (sprite != onBomb[0] && sprite != onBomb[1]) {
