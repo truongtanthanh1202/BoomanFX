@@ -80,7 +80,6 @@ public class ChooseMapController implements Initializable {
 
     @FXML
     private void clickImageNewGame() {
-//        App.gameWorld.shutdown();
         App.setRoot("Menu");
     }
 

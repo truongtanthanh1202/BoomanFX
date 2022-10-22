@@ -264,8 +264,7 @@ public class Map {
     private void exportMapToFile() throws IOException {
         FileOutputStream outputStream = new FileOutputStream("src/main/resources/booman_fx/map/level-map.txt");
 
-//        String level = "level: " + App.gameWorld.getLevel() + "\n";
-        String level = "level: 1 \n";
+        String level = "level: " + App.gameAttribute.getLevel() + "\n";
         outputStream.write(level.getBytes());
 
         for(int i = 0; i < height; ++ i){

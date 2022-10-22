@@ -41,7 +41,7 @@ public class GameState extends GameAttribute {
     public static void initial() {
         App.gameAttribute = new GameState(fps);
         App.gameAttribute.begin();
-        generateMap(level);
+        generateMap();
     }
 
     public static void startSound() {
@@ -63,10 +63,10 @@ public class GameState extends GameAttribute {
         if (isNextLevel) {
             sceneSprites.getChildren().clear();
             isNextLevel = false;
-//            level += 1;
+            level++;
             StatusGame.setPlay(this);
             timeLeft.setValue(18000);
-            generateMap(level);
+            generateMap();
             setRoot("GameSurface");
             begin();
         }
@@ -79,7 +79,6 @@ public class GameState extends GameAttribute {
             isNextLevel = true;
             pause();
             setRoot("ChooseMap");
-            level++;
             return;
         }
 
@@ -109,7 +108,7 @@ public class GameState extends GameAttribute {
 
     }
 
-    private static void generateMap(int level) {
+    private static void generateMap() {
         spritesMap = new Map(WIDTH / SIZE_A_SQUARE, HEIGHT / SIZE_A_SQUARE, level);
         for (int h = 0; h < HEIGHT / SIZE_A_SQUARE; ++h) {
             for (int w = 0; w < WIDTH / SIZE_A_SQUARE; ++w) {
