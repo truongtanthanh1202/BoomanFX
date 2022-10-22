@@ -8,9 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import booman_fx.objects.Character.Character;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static booman_fx.Enum.StatusGame.*;
+import static booman_fx.game.App.setRoot;
 
 public class GameSurfaceController implements Initializable {
     private final Images[] btnHome = Images.iconHome;
@@ -24,11 +28,13 @@ public class GameSurfaceController implements Initializable {
     private final Images[] btnOnMusic = Images.iconOnMusic;
     private final Images[] btnOffMusic = Images.iconOffMusic;
 
-    @FXML
-    private ImageView imgPlayer, imgHome, imgOnMusic, imgOffMusic, imgOnSoundEffect, imgOffSoundEffect, imgPause, imgContinue;
+    private final Images[] imgStatus = Images.imageLWP;
 
     @FXML
-    Label labelLevelGame, labelTimeLeft;
+    private ImageView imgPlayer, imgHome, imgOnMusic, imgOffMusic, imgOnSoundEffect, imgOffSoundEffect, imgPause, imgContinue, imageStatusGame;
+
+    @FXML
+    Label labelLevelGame, labelTimeLeft, labelLive, labelBoomPower, labelBooms, labelSpeed;
 
     @FXML
     AnchorPane objectContainer;
@@ -44,6 +50,8 @@ public class GameSurfaceController implements Initializable {
         imgOffSoundEffect.setVisible(false);
         imgOffMusic.setVisible(false);
 
+        setInfoItem(App.gameAttribute.getPlayer());
+
         labelLevelGame.setText("Level: " + App.gameAttribute.getLevel());
         labelTimeLeft.setText("300"); // Sửa lại để count down về 1
         App.gameAttribute.getTimeLeft().addListener((observableValue, oldValue, newValue) ->
@@ -58,12 +66,28 @@ public class GameSurfaceController implements Initializable {
             System.out.println(App.gameAttribute.getPlayer());
         }
 
-
         try {
             objectContainer.getChildren().add(App.gameAttribute.getSceneSprites());
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        App.gameAttribute.statusProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue.intValue() == LOSS.ordinal()) {
+                imageStatusGame.setImage(imgStatus[0].getImage());
+            }
+        });
+    }
+
+    private void setInfoItem(Character character) {
+        labelLive.setText(String.valueOf(character.livesProperty().getValue()));
+        labelBooms.setText(String.valueOf(character.numBombProperty().getValue()));
+        labelBoomPower.setText(String.valueOf(character.powerBombProperty().getValue()));
+        labelSpeed.setText(String.valueOf(character.powerSpeedProperty().getValue()));
+        character.livesProperty().addListener((observableValue, oldValue, newValue) -> labelLive.setText(String.valueOf(newValue)));
+        character.numBombProperty().addListener((observableValue, oldValue, newValue) -> labelBooms.setText(String.valueOf(newValue)));
+        character.powerBombProperty().addListener((observableValue, oldValue, newValue) -> labelBoomPower.setText(String.valueOf(newValue)));
+        character.powerSpeedProperty().addListener((observableValue, oldValue, newValue) -> labelSpeed.setText(String.valueOf(newValue)));
     }
 
     public void clickImgHome(MouseEvent mouseEvent) {

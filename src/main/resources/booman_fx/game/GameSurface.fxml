@@ -102,5 +102,6 @@
             <Font name="SansSerif Bold" size="17.0" />
          </font>
       </Label>
+      <ImageView fx:id="imageStatusGame" fitHeight="200.0" fitWidth="200.0" layoutX="330.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

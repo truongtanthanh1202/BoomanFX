@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 import static booman_fx.Enum.StatusGame.PLAY;
 
 public abstract class GameAttribute {
-    // where contain all objects
-    public static int TIME_LWP = 2;
     protected final Group sceneSprites;
     private final int framesPerSecond;
 
@@ -33,14 +31,9 @@ public abstract class GameAttribute {
     protected static Audio musicGame;
     protected static Audio soundEffectGame;
     protected static final IntegerProperty status = new SimpleIntegerProperty(PLAY.ordinal());
-    protected int timeLWP;
 
-    public int getTimeLWP() {
-        return timeLWP;
-    }
-
-    public void setTimeLWP(int timeLWP) {
-        this.timeLWP = timeLWP;
+    public IntegerProperty statusProperty() {
+        return status;
     }
 
     public void setStatus(int status) {
@@ -145,4 +138,6 @@ public abstract class GameAttribute {
     public List<Sprite> sprites() {
         return sceneSprites.getChildren().stream().map(image -> (Sprite) image).collect(Collectors.toList());
     }
+
+    public abstract void sleep(int second);
 }

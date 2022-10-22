@@ -66,13 +66,16 @@ public class GameState extends GameAttribute {
     @Override
     protected void checkEndGame() {
         timeLeft.setValue(timeLeft.get() - 1);
-        if (timeLeft.get() < 0) {
+        if (timeLeft.get() < 0 || player == null) {
             sleep(1);
             pause();
             setRoot("EndGame");
         }
-        if ((player != null && player.livesProperty().getValue() <= 0) || timeLeft.getValue() < 0) {
+        if ((player != null && player.livesProperty().getValue() <= 0)) {
             StatusGame.setLoss(this);
+            pause();
+            sleep(1);
+            setRoot("EndGame");
         }
     }
 
@@ -117,19 +120,15 @@ public class GameState extends GameAttribute {
         EventHandler<KeyEvent> playerPress = keyEvent -> {
             if (keyEvent.getCode() == KeyCode.A || keyEvent.getCode() == KeyCode.LEFT) {
                 player.setMoveLeft(true);
-                System.out.println("MOVE LEFT");
             }
             if (keyEvent.getCode() == KeyCode.S || keyEvent.getCode() == KeyCode.DOWN) {
                 player.setMoveDown(true);
-                System.out.println("MOVE DOWN");
             }
             if (keyEvent.getCode() == KeyCode.D || keyEvent.getCode() == KeyCode.RIGHT) {
                 player.setMoveRight(true);
-                System.out.println("MOVE RIGHT");
             }
             if (keyEvent.getCode() == KeyCode.W || keyEvent.getCode() == KeyCode.UP) {
                 player.setMoveUp(true);
-                System.out.println("MOVE UP");
             }
             if (keyEvent.getCode() == KeyCode.SPACE || keyEvent.getCode() == KeyCode.ENTER) {
                 if(status.getValue() != PAUSE.ordinal()) {
@@ -156,18 +155,6 @@ public class GameState extends GameAttribute {
         App.scene.setOnKeyReleased(playerRelease);
     }
 
-    protected void nextLevel() {
-        if (isNextLevel) {
-            sceneSprites.getChildren().clear();
-            isNextLevel = false;
-            level++;
-            StatusGame.setPlay(this);
-            timeLeft.setValue(18000);
-            generateMap();
-            setRoot("GameSurface");
-        }
-    }
-
     private static int importLevelFromFile(){
         int levelGame = 0;
         try {
@@ -181,7 +168,8 @@ public class GameState extends GameAttribute {
         return levelGame;
     }
 
-    private void sleep(int second) {
+    @Override
+    public void sleep(int second) {
         if (spritesMap != null) {
             try {
                 Thread.sleep(second*1000);
