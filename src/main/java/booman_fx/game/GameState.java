@@ -9,6 +9,9 @@ import booman_fx.game.GameResources.SoundEffect;
 import booman_fx.objects.*;
 import booman_fx.objects.Character.Enemy.Enemy;
 import booman_fx.objects.Character.Player.Player;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 //import booman_fx.objects.Character.Enemy.Enemy.Enemy;
 
 import java.io.FileInputStream;
@@ -18,6 +21,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import static booman_fx.Enum.StatusGame.PAUSE;
 import static booman_fx.Enum.TypeSprite.*;
 import static booman_fx.game.App.setRoot;
 //import static booman_fx.Enum.StatusGame.*;
@@ -67,6 +71,9 @@ public class GameState extends GameAttribute {
             pause();
             setRoot("EndGame");
         }
+        if ((player != null && player.livesProperty().getValue() <= 0) || timeLeft.getValue() < 0) {
+            StatusGame.setLoss(this);
+        }
     }
 
     @Override
@@ -95,6 +102,7 @@ public class GameState extends GameAttribute {
                 }
                 else if (spritesMap.getMap()[h][w].getTypeSprite(PLAYER)) {
                     player = Player.createPlayer(w, h);
+                    setInput();
                 }
             }
         }
@@ -103,6 +111,49 @@ public class GameState extends GameAttribute {
     public void spawn(Sprite sprite) {
         super.spawn(sprite);
         spritesMap.addSprite(sprite);
+    }
+
+    private static void setInput() {
+        EventHandler<KeyEvent> playerPress = keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.A || keyEvent.getCode() == KeyCode.LEFT) {
+                player.setMoveLeft(true);
+                System.out.println("MOVE LEFT");
+            }
+            if (keyEvent.getCode() == KeyCode.S || keyEvent.getCode() == KeyCode.DOWN) {
+                player.setMoveDown(true);
+                System.out.println("MOVE DOWN");
+            }
+            if (keyEvent.getCode() == KeyCode.D || keyEvent.getCode() == KeyCode.RIGHT) {
+                player.setMoveRight(true);
+                System.out.println("MOVE RIGHT");
+            }
+            if (keyEvent.getCode() == KeyCode.W || keyEvent.getCode() == KeyCode.UP) {
+                player.setMoveUp(true);
+                System.out.println("MOVE UP");
+            }
+            if (keyEvent.getCode() == KeyCode.SPACE || keyEvent.getCode() == KeyCode.ENTER) {
+                if(status.getValue() != PAUSE.ordinal()) {
+                    player.storeBomb();
+                }
+            }
+        };
+        App.scene.setOnKeyPressed(playerPress);
+
+        EventHandler<KeyEvent> playerRelease = keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.A || keyEvent.getCode() == KeyCode.LEFT) {
+                player.setMoveLeft(false);
+            }
+            if (keyEvent.getCode() == KeyCode.S || keyEvent.getCode() == KeyCode.DOWN) {
+                player.setMoveDown(false);
+            }
+            if (keyEvent.getCode() == KeyCode.D || keyEvent.getCode() == KeyCode.RIGHT) {
+                player.setMoveRight(false);
+            }
+            if (keyEvent.getCode() == KeyCode.W || keyEvent.getCode() == KeyCode.UP) {
+                player.setMoveUp(false);
+            }
+        };
+        App.scene.setOnKeyReleased(playerRelease);
     }
 
     protected void nextLevel() {
