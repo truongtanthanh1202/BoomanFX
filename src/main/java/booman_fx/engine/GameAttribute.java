@@ -43,6 +43,7 @@ public abstract class GameAttribute {
 
     public GameAttribute(int framesPerSecond) {
         this.framesPerSecond = framesPerSecond;
+        isNextLevel = false;
         sceneSprites = new Group();
         buildGameLoop();
     }
@@ -50,14 +51,11 @@ public abstract class GameAttribute {
     private void buildGameLoop() {
         final Duration oneFrameAmt = Duration.millis(1000 / (float) framesPerSecond);
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, actionEvent -> {
+            nextLevel();
             updateSprites();
             checkCollision();
             showSprites();
             checkEndGame();
-            checkNextLevel();
-            checkWinGame();
-
-            nextLevel();
             checkNextLevel();
         });
 

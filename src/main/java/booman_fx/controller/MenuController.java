@@ -46,6 +46,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void clickImageStart() {
+        GameState.initial();
         App.setRoot("ChooseMap");
     }
 

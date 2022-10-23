@@ -31,7 +31,7 @@ public class GameState extends GameAttribute {
     public static final int WIDTH = 680;
     public static final int SIZE_A_SQUARE = 40;
     public static final int fps = 60;
-    private static final int MAX_LEVEL = 5;
+    private static final int MAX_LEVEL = 4;
 
     public GameState(int framesPerSecond) {
         super(framesPerSecond);
@@ -40,7 +40,6 @@ public class GameState extends GameAttribute {
 
     public static void initial() {
         App.gameAttribute = new GameState(fps);
-        App.gameAttribute.begin();
         generateMap();
     }
 
@@ -68,7 +67,6 @@ public class GameState extends GameAttribute {
             timeLeft.setValue(18000);
             generateMap();
             setRoot("GameSurface");
-            begin();
         }
     }
 
@@ -88,6 +86,11 @@ public class GameState extends GameAttribute {
             return;
         }
 
+        if (status.getValue() == WIN.ordinal()) {
+            checkWinGame();
+            return;
+        }
+
         if (spritesMap == null || spritesMap.getMap()[player.getYInMap()][player.getXInMap()].getTypeSprite(PORTAL)) {
             if (!checkWinGame()) {
                 StatusGame.setPassLevel(this);
@@ -100,6 +103,7 @@ public class GameState extends GameAttribute {
         timeLeft.setValue(timeLeft.get() - 1);
         if (timeLeft.get() < 0 || player == null) {
             sleep(1);
+            shutdown();
             pause();
             setRoot("EndGame");
         }
@@ -113,11 +117,18 @@ public class GameState extends GameAttribute {
 
     @Override
     protected boolean checkWinGame() {
-        if (level >= MAX_LEVEL) {
-//            StatusGame.setWin(this);
-//            return true;
-            System.out.println(level);
+        if (status.getValue() == WIN.ordinal()) {
+            shutdown();
+            sleep(1);
+            App.setRoot("Menu");
+            return true;
         }
+
+        if (level >= MAX_LEVEL) {
+            StatusGame.setWin(this);
+            return true;
+        }
+
         return false;
     }
 
