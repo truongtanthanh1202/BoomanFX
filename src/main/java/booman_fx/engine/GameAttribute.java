@@ -51,8 +51,8 @@ public abstract class GameAttribute {
         final Duration oneFrameAmt = Duration.millis(1000 / (float) framesPerSecond);
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, actionEvent -> {
             updateSprites();
-            showSprites();
             checkCollision();
+            showSprites();
             checkEndGame();
             checkNextLevel();
             checkWinGame();

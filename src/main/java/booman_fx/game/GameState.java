@@ -73,6 +73,12 @@ public class GameState extends GameAttribute {
     }
 
     @Override
+    public void destroy(Sprite sprite) {
+        super.destroy(sprite);
+        spritesMap.removeSprite(sprite);
+    }
+
+    @Override
     protected void checkNextLevel() {
         if (status.getValue() == PASS_LEVEL.ordinal()) {
             sleep(1);
