@@ -21,7 +21,6 @@ import static booman_fx.Enum.StatusCharacter.*;
 
 public abstract class Character extends Sprite {
     public static final double IMMORTAL_TIME = 3;
-    public static final double STUNNED_TIME = 2;
     private final Images[][] imageCharacter;
 
     private final double VELOCITY = 0.3;
