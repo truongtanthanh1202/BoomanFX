@@ -75,8 +75,6 @@ public class Explode extends Sprite {
             if (this.checkCollision(sprite) && sprite instanceof Box) {
                 sprite.handleDeath();
                 createItem = true;
-            } else if (this.checkCollision(sprite) && sprite instanceof Item) {
-                sprite.handleDeath();
             }
         }
     }
