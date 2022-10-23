@@ -83,7 +83,9 @@ public class GameState extends GameAttribute {
         }
 
         if (spritesMap == null || spritesMap.getMap()[player.getYInMap()][player.getXInMap()].getTypeSprite(PORTAL)) {
-            StatusGame.setPassLevel(this);
+            if (!checkWinGame()) {
+                StatusGame.setPassLevel(this);
+            }
         }
     }
 
@@ -104,8 +106,13 @@ public class GameState extends GameAttribute {
     }
 
     @Override
-    protected void checkWinGame() {
-
+    protected boolean checkWinGame() {
+        if (level >= MAX_LEVEL) {
+//            StatusGame.setWin(this);
+//            return true;
+            System.out.println(level);
+        }
+        return false;
     }
 
     private static void generateMap() {

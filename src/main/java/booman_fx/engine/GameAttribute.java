@@ -124,7 +124,7 @@ public abstract class GameAttribute {
 
     protected abstract void checkEndGame();
 
-    protected abstract void checkWinGame();
+    protected abstract boolean checkWinGame();
 
     // control game loop
     public void begin() {
