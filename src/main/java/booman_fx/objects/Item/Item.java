@@ -12,6 +12,9 @@ import java.util.Random;
 
 public abstract class Item extends Sprite{
     private Images[] imageItem;
+    private static final double DEATH_TIME = 6;
+    private double deathTime = DEATH_TIME;
+    private static final Images[][] ITEM_IMAGE = Images.items;
 
     public static void createItem(int xInMap, int yInMap) {
         int random = Math.abs(new Random().nextInt()) % 20;
@@ -35,6 +38,22 @@ public abstract class Item extends Sprite{
     @Override
     public void update() {
         setImage(imageItem[(int) (new Date().getTime() / 400) % 2 + 1].getImage());
+        deathTime -= 1.0 / App.gameAttribute.getFramesPerSecond();
+        if (deathTime < 2) {
+            if (this instanceof BombItem) {
+                setImage(ITEM_IMAGE[4][(int) (new Date().getTime() / 100) % 2 + 1].getImage());
+            } else if (this instanceof HeartItem) {
+                setImage(ITEM_IMAGE[5][(int) (new Date().getTime() / 100) % 2 + 1].getImage());
+            } else if (this instanceof PowerItem) {
+                setImage(ITEM_IMAGE[6][(int) (new Date().getTime() / 100) % 2 + 1].getImage());
+            } else {
+                setImage(ITEM_IMAGE[7][(int) (new Date().getTime() / 100) % 2 + 1].getImage());
+            }
+        }
+        if (deathTime < 0) {
+            handleDeath();
+        }
     }
+
     public abstract void powerUp(Character character);
 }

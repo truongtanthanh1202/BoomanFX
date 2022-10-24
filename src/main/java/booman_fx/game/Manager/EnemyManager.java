@@ -30,6 +30,19 @@ public abstract class EnemyManager {
         direction = UP;
     }
 
+
+    protected void checkExitWay(boolean exitWay) {
+        if (!exitWay) {
+            direction = Direction.oppositeDirect(direction);
+            int nextX = enemy.getXInMap() + Map.dx[direction.ordinal()];
+            int nextY = enemy.getYInMap() + Map.dy[direction.ordinal()];
+            if (spritesMap.getMap()[nextY][nextX].getTypeSprite(BOMB)) {
+                nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());
+            } else {
+                nextStep = new Pair(nextX, nextY);
+            }
+        }
+    }
     //find random way
     protected void findRandomWay(boolean acrossBox) {
         boolean exitWay = false;
@@ -54,18 +67,10 @@ public abstract class EnemyManager {
                 break;
             }
         }
-
-        if (!exitWay) {
-            direction = Direction.oppositeDirect(direction);
-            int nextX = enemy.getXInMap() + Map.dx[direction.ordinal()];
-            int nextY = enemy.getYInMap() + Map.dy[direction.ordinal()];
-            if (spritesMap.getMap()[nextY][nextX].getTypeSprite(BOMB)) {
-                nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());
-            } else {
-                nextStep = new Pair(nextX, nextY);
-            }
-        }
+        checkExitWay(exitWay);
     }
+
+
 
     // find the shortest way from this enemy to player.
     protected void findShortestWay() {
@@ -112,6 +117,22 @@ public abstract class EnemyManager {
         }
     }
 
+
+
+    protected boolean checkCondition(int safe, Pair cur) {
+        if (safe >= 1) {
+            if ((cur.getX() == enemy.getXInMap() && Math.abs(cur.getY() - enemy.getYInMap()) <= enemy.powerBombProperty().getValue())
+                    || (cur.getY() == enemy.getYInMap() && Math.abs(cur.getX() - enemy.getXInMap()) <= enemy.powerBombProperty().getValue())) {
+                return false;
+            }
+        }
+
+        if (spritesMap.checkDanger(cur.getX(), cur.getY())) {
+            return false;
+        }
+        return true;
+    }
+
     // find way to avoid bomb if this enemy is threatened
     protected boolean avoidBomb(int safe) {
         boolean[][] visited = new boolean[spritesMap.getHeight()][spritesMap.getWidth()];
@@ -121,18 +142,7 @@ public abstract class EnemyManager {
 
         while (!way.isEmpty()) {
             Pair cur = way.pop();
-            boolean existWay = true;
-            if (safe >= 1) {
-                if ((cur.getX() == enemy.getXInMap() && Math.abs(cur.getY() - enemy.getYInMap()) <= enemy.powerBombProperty().getValue())
-                        || (cur.getY() == enemy.getYInMap() && Math.abs(cur.getX() - enemy.getXInMap()) <= enemy.powerBombProperty().getValue())) {
-                    existWay = false;
-                }
-            }
-
-            if (spritesMap.checkDanger(cur.getX(), cur.getY())) {
-                existWay = false;
-            }
-
+            boolean existWay = checkCondition(safe, cur);
             if (existWay) {
                 while (!cur.equals(new Pair(enemy.getXInMap(), enemy.getYInMap()))) {
                     nextStep = cur;
