@@ -28,7 +28,7 @@ public class GameState extends GameAttribute {
     public static final int WIDTH = 680;
     public static final int SIZE_A_SQUARE = 40;
     public static final int fps = 60;
-    private static final int MAX_LEVEL = 1;
+    private static final int MAX_LEVEL = 5;
 
     public GameState(int framesPerSecond) {
         super(framesPerSecond);
