@@ -16,19 +16,19 @@ import static booman_fx.Enum.TypeSprite.ENEMY;
 
 public class Enemy extends Character {
     protected EnemyManager controller;
-    public static void createEnemy(int xInMap, int yInMap) {
+    public static void createEnemy(int realX, int realY) {
         switch (App.gameAttribute.getLevel()) {
-            case 1 -> App.gameAttribute.spawn(new EnemyLevel1(xInMap, yInMap));
-            case 2 -> App.gameAttribute.spawn(new EnemyLevel2(xInMap, yInMap));
-            case 3 -> App.gameAttribute.spawn(new EnemyLevel3(xInMap, yInMap));
-            case 4 -> App.gameAttribute.spawn(new EnemyLevel4(xInMap, yInMap));
-            case 5 -> App.gameAttribute.spawn(new EnemyLevel5(xInMap, yInMap));
+            case 1 -> App.gameAttribute.spawn(new EnemyLevel1(realX, realY));
+            case 2 -> App.gameAttribute.spawn(new EnemyLevel2(realX, realY));
+            case 3 -> App.gameAttribute.spawn(new EnemyLevel3(realX, realY));
+            case 4 -> App.gameAttribute.spawn(new EnemyLevel4(realX, realY));
+            case 5 -> App.gameAttribute.spawn(new EnemyLevel5(realX, realY));
         }
     }
 
-    public Enemy(int xInMap, int yInMap) {
+    public Enemy(int realX, int realY) {
         super(Images.enemy[App.gameAttribute.getLevel() - 1][DOWN.ordinal()][0].getImage(),
-                xInMap, yInMap, ENEMY, Images.enemy[App.gameAttribute.getLevel() - 1]);
+                realX, realY, ENEMY, Images.enemy[App.gameAttribute.getLevel() - 1]);
     }
 
     @Override

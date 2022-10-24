@@ -11,8 +11,8 @@ import booman_fx.objects.Item.Item;
 import static booman_fx.Enum.StatusCharacter.IMMORTAL;
 
 public class EnemyLevel1 extends Enemy {
-    public EnemyLevel1(int xInMap, int yInMap) {
-        super(xInMap, yInMap);
+    public EnemyLevel1(int realX, int realY) {
+        super(realX, realY);
         controller = new EnemyLevelManager(this);
     }
 

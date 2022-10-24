@@ -12,8 +12,8 @@ public class Explode extends Sprite {
     private double deathTime = DEATH_TIME;
     private boolean createItem;
 
-    public static void createExplode(int xInMap, int yInMap, int power){
-        App.gameAttribute.spawn(new Explode(xInMap, yInMap, 6));
+    public static void createExplode(int realX, int realY, int power){
+        App.gameAttribute.spawn(new Explode(realX, realY, 6));
         boolean up = false;
         boolean left = false;
         boolean down = false;
@@ -22,22 +22,22 @@ public class Explode extends Sprite {
 
         for (int i = 1; i <= power; ++i) {
             if (!up) {
-                explode = new Explode(xInMap, yInMap - i, (i == power) ? 2 : 0);
+                explode = new Explode(realX, realY - i, (i == power) ? 2 : 0);
                 up = spawnExplode(explode);
             }
 
             if (!down) {
-                explode = new Explode(xInMap, yInMap + i, (i == power) ? 4 : 0);
+                explode = new Explode(realX, realY + i, (i == power) ? 4 : 0);
                 down = spawnExplode(explode);
             }
 
             if (!left) {
-                explode = new Explode(xInMap - i, yInMap, (i == power) ? 5 : 1);
+                explode = new Explode(realX - i, realY, (i == power) ? 5 : 1);
                 left = spawnExplode(explode);
             }
 
             if (!right) {
-                explode = new Explode(xInMap + i, yInMap, (i == power) ? 3 : 1);
+                explode = new Explode(realX + i, realY, (i == power) ? 3 : 1);
                 right = spawnExplode(explode);
             }
         }
@@ -56,8 +56,8 @@ public class Explode extends Sprite {
     }
 
     // constructor
-    public Explode(int xInMap, int yInMap, int index) {
-        super(Images.explodes[index].getImage(), xInMap, yInMap, EXPLODE);
+    public Explode(int realX, int realY, int index) {
+        super(Images.explodes[index].getImage(), realX, realY, EXPLODE);
         createItem = false;
     }
 

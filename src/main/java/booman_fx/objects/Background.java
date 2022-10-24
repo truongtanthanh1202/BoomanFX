@@ -6,11 +6,11 @@ import booman_fx.game.App;
 import static booman_fx.Enum.TypeSprite.BACKGROUND;
 
 public class Background extends Sprite {
-    public static void createBackground(int xInMap, int yInMap){
-        App.gameAttribute.spawn(new Background(xInMap, yInMap));
+    public static void createBackground(int realX, int realY){
+        App.gameAttribute.spawn(new Background(realX, realY));
     }
 
-    public Background(int xInMap, int yInMap) {
-        super(App.gameAttribute.getSpritesMap().getBackground().getImage(), xInMap, yInMap, BACKGROUND);
+    public Background(int realX, int realY) {
+        super(App.gameAttribute.getSpritesMap().getBackground().getImage(), realX, realY, BACKGROUND);
     }
 }

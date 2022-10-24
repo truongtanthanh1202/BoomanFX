@@ -16,22 +16,22 @@ public abstract class Item extends Sprite{
     private double deathTime = DEATH_TIME;
     private static final Images[][] ITEM_IMAGE = Images.items;
 
-    public static void createItem(int xInMap, int yInMap) {
+    public static void createItem(int realX, int realY) {
         int random = Math.abs(new Random().nextInt()) % 20;
         int index = (random < 1) ? 1 : (random < 5) ? 0 : (random < 9) ? 2 : (random < 13) ? 3 : 4;
         if(index < 4) {
             switch (TypeItem.values()[index]) {
-                case HEART_ITEM -> App.gameAttribute.spawn(new HeartItem(xInMap, yInMap));
-                case FLAME_ITEM -> App.gameAttribute.spawn(new PowerItem(xInMap, yInMap));
-                case BOMB_ITEM -> App.gameAttribute.spawn(new BombItem(xInMap, yInMap));
-                case SPEED_ITEM -> App.gameAttribute.spawn(new SpeedItem(xInMap, yInMap));
+                case HEART_ITEM -> App.gameAttribute.spawn(new HeartItem(realX, realY));
+                case FLAME_ITEM -> App.gameAttribute.spawn(new PowerItem(realX, realY));
+                case BOMB_ITEM -> App.gameAttribute.spawn(new BombItem(realX, realY));
+                case SPEED_ITEM -> App.gameAttribute.spawn(new SpeedItem(realX, realY));
             }
         }
     }
 
     // constructor
-    protected Item(Image image, int xInMap, int yInMap, Images[] imageItem) {
-        super(image, xInMap, yInMap, ITEM);
+    protected Item(Image image, int realX, int realY, Images[] imageItem) {
+        super(image, realX, realY, ITEM);
         this.imageItem = imageItem;
     }
 

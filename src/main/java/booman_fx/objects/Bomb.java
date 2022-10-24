@@ -17,13 +17,13 @@ public class Bomb extends Sprite {
     private double deathTime = DEATH_TIME;
     private final int power;
 
-    public static void createBomb(int xInMap, int yInMap, Character character){
-        App.gameAttribute.spawn(new Bomb(xInMap, yInMap, character));
+    public static void createBomb(int realX, int realY, Character character){
+        App.gameAttribute.spawn(new Bomb(realX, realY, character));
     }
 
     // constructor
-    public Bomb(int xInMap, int yInMap, Character character) {
-        super(BOMB_IMAGE[0].getImage(), xInMap, yInMap, BOMB);
+    public Bomb(int realX, int realY, Character character) {
+        super(BOMB_IMAGE[0].getImage(), realX, realY, BOMB);
         this.character = character;
         this.power = character.powerBombProperty().getValue();
 

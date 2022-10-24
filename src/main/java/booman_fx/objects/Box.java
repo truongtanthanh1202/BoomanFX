@@ -8,12 +8,12 @@ import java.util.Random;
 import static booman_fx.Enum.TypeSprite.*;
 
 public class Box extends Sprite {
-    public static void createBox(int xInMap, int yInMap){
+    public static void createBox(int realX, int realY){
         int index = Math.abs(new Random().nextInt()) % 3;
-        App.gameAttribute.spawn(new Box(xInMap, yInMap, index));
+        App.gameAttribute.spawn(new Box(realX, realY, index));
     }
 
-    public Box(int xInMap, int yInMap, int index) {
-        super(App.gameAttribute.getSpritesMap().getBox()[index].getImage(), xInMap, yInMap, BOX);
+    public Box(int realX, int realY, int index) {
+        super(App.gameAttribute.getSpritesMap().getBox()[index].getImage(), realX, realY, BOX);
     }
 }

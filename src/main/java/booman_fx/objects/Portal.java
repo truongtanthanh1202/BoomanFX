@@ -11,11 +11,11 @@ import static booman_fx.Enum.TypeSprite.PORTAL;
 public class Portal extends Sprite {
     private static final Images[] PORTAL_IMAGE = Images.portal;
 
-    public static void createPortal(int xInMap, int yInMap){
-        App.gameAttribute.spawn(new Portal(xInMap, yInMap));
+    public static void createPortal(int realX, int realY){
+        App.gameAttribute.spawn(new Portal(realX, realY));
     }
-    protected Portal(int xInMap, int yInMap) {
-        super(Images.portal[0].getImage(), xInMap, yInMap, PORTAL);
+    protected Portal(int realX, int realY) {
+        super(Images.portal[0].getImage(), realX, realY, PORTAL);
     }
 
     @Override
