@@ -33,7 +33,7 @@ public class EndGameController implements Initializable {
 
     @FXML
     private void clickImageNewGame() {
-//        GameState.initial();
+        App.gameAttribute.setStatus(PLAY.ordinal());
         App.setRoot("Menu");
     }
 

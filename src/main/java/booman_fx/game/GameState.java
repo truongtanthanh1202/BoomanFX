@@ -1,6 +1,5 @@
 package booman_fx.game;
 
-//import booman_fx.Enum.StatusGame;
 import booman_fx.Enum.StatusGame;
 import booman_fx.engine.GameAttribute;
 import booman_fx.engine.Sprite;
@@ -12,7 +11,6 @@ import booman_fx.objects.Character.Player.Player;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import booman_fx.objects.Character.Enemy.Enemy.Enemy;
 
 import java.io.FileInputStream;
 import java.util.Collections;
@@ -24,14 +22,13 @@ import java.util.stream.Collectors;
 import static booman_fx.Enum.StatusGame.*;
 import static booman_fx.Enum.TypeSprite.*;
 import static booman_fx.game.App.setRoot;
-//import static booman_fx.Enum.StatusGame.*;
 
 public class GameState extends GameAttribute {
     public static final int HEIGHT = 600;
     public static final int WIDTH = 680;
     public static final int SIZE_A_SQUARE = 40;
     public static final int fps = 60;
-    private static final int MAX_LEVEL = 5;
+    private static final int MAX_LEVEL = 1;
 
     public GameState(int framesPerSecond) {
         super(framesPerSecond);
@@ -110,17 +107,11 @@ public class GameState extends GameAttribute {
     @Override
     protected void checkEndGame() {
         timeLeft.setValue(timeLeft.get() - 1);
-        if (timeLeft.get() < 0 || player == null) {
+        if (timeLeft.get() < 0 || player == null || player.livesProperty().getValue() <= 0) {
             StatusGame.setLoss(this);
             sleep(1);
             shutdown();
             pause();
-            setRoot("EndGame");
-        }
-        if ((player != null && player.livesProperty().getValue() <= 0)) {
-            StatusGame.setLoss(this);
-            pause();
-            sleep(1);
             setRoot("EndGame");
         }
     }
