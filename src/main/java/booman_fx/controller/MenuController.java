@@ -58,7 +58,7 @@ public class MenuController implements Initializable {
 
         try {
             FileOutputStream outputStream = new FileOutputStream("src/main/resources/booman_fx/map/level-map.txt");
-            String level = "level: 5\n";
+            String level = "level: 1\n";
             outputStream.write(level.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

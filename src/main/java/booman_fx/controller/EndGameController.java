@@ -33,16 +33,16 @@ public class EndGameController implements Initializable {
 
     @FXML
     private void clickImageNewGame() {
-        GameState.initial();
-        App.setRoot("ChooseMap");
+//        GameState.initial();
+        App.setRoot("Menu");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imageNewGame.setImage(buttonNewGame[0].getImage());
-        if (App.gameAttribute.statusProperty().equals(LOSS)) {
+        if (App.gameAttribute.statusProperty().getValue() == LOSS.ordinal()) {
             imgStatus.setImage(imageStatus[0].getImage());
-        } else if (App.gameAttribute.statusProperty().equals(WIN)) {
+        } else if (App.gameAttribute.statusProperty().getValue() == WIN.ordinal()) {
             imgStatus.setImage(imageStatus[1].getImage());
         } else {
             imgStatus.setImage(imageStatus[0].getImage());

@@ -102,6 +102,7 @@ public class GameState extends GameAttribute {
     protected void checkEndGame() {
         timeLeft.setValue(timeLeft.get() - 1);
         if (timeLeft.get() < 0 || player == null) {
+            StatusGame.setLoss(this);
             sleep(1);
             shutdown();
             pause();
@@ -120,7 +121,7 @@ public class GameState extends GameAttribute {
         if (status.getValue() == WIN.ordinal()) {
             shutdown();
             sleep(1);
-            App.setRoot("Menu");
+            App.setRoot("EndGame");
             return true;
         }
 
