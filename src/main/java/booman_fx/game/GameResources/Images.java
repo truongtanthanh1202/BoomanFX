@@ -1,4 +1,4 @@
-package booman_fx.game;
+package booman_fx.game.GameResources;
 
 import booman_fx.engine.ImageSheet;
 import javafx.scene.image.Image;

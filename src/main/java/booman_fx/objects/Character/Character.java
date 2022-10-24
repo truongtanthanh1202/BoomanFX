@@ -2,7 +2,7 @@ package booman_fx.objects.Character;
 
 import booman_fx.Enum.StatusCharacter;
 import booman_fx.Enum.TypeSprite;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
 import booman_fx.objects.Bomb;

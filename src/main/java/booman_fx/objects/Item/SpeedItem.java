@@ -1,8 +1,7 @@
 package booman_fx.objects.Item;
 
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.objects.Character.Character;
-import javafx.scene.image.Image;
 
 import static booman_fx.Enum.TypeItem.SPEED_ITEM;
 

@@ -2,9 +2,9 @@ package booman_fx.objects.Character.Enemy;
 
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.game.Manager.EnemyManager;
-import booman_fx.game.Pair;
+import booman_fx.game.GameResources.Pair;
 import booman_fx.objects.Character.Character;
 import booman_fx.objects.Portal;
 

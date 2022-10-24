@@ -1,8 +1,7 @@
 package booman_fx.controller;
 
 import booman_fx.Enum.TypePlayer;
-import booman_fx.game.GameState;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.game.App;
 import booman_fx.objects.Character.Player.Player;
 

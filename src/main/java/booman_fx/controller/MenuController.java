@@ -2,7 +2,7 @@ package booman_fx.controller;
 
 import booman_fx.game.App;
 import booman_fx.game.GameState;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;

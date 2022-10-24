@@ -3,8 +3,10 @@ package booman_fx.game;
 import booman_fx.Enum.Direction;
 import booman_fx.Enum.TypeMap;
 import booman_fx.Enum.TypeSprite;
-import booman_fx.game.Pair;
+import booman_fx.game.GameResources.Images;
+import booman_fx.game.GameResources.Pair;
 import booman_fx.engine.Sprite;
+import booman_fx.game.GameResources.Square;
 import booman_fx.objects.Bomb;
 import booman_fx.objects.Item.PowerItem;
 

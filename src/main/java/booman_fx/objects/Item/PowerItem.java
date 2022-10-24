@@ -1,6 +1,6 @@
 package booman_fx.objects.Item;
 
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.objects.Character.Character;
 
 import static booman_fx.Enum.TypeItem.FLAME_ITEM;

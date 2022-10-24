@@ -1,7 +1,7 @@
 package booman_fx.controller;
 
 import booman_fx.Enum.TypeMap;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.game.App;
 import booman_fx.game.Map;
 import javafx.fxml.FXML;

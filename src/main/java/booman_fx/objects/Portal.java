@@ -2,7 +2,7 @@ package booman_fx.objects;
 
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 
 import java.util.Date;
 
