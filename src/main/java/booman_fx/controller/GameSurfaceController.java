@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static booman_fx.Enum.StatusGame.*;
-import static booman_fx.game.App.setRoot;
 
 public class GameSurfaceController implements Initializable {
     private final Images[] btnHome = Images.iconHome;
@@ -28,7 +27,7 @@ public class GameSurfaceController implements Initializable {
     private final Images[] btnOnMusic = Images.iconOnMusic;
     private final Images[] btnOffMusic = Images.iconOffMusic;
 
-    private final Images[] imgStatus = Images.imageLWP;
+    private final Images[] imgStatus = Images.imageStatus;
 
     @FXML
     private ImageView imgPlayer, imgHome, imgOnMusic, imgOffMusic, imgOnSoundEffect, imgOffSoundEffect, imgPause, imgContinue, imageStatusGame;
@@ -124,9 +123,11 @@ public class GameSurfaceController implements Initializable {
         imgOnSoundEffect.setVisible(false);
         try {
             App.gameAttribute.getSoundEffectGame().pause();
+            App.gameAttribute.getSoundEffectGame().setStatus(false);
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
     }
 
     public void enterimgOnSoundEffect(MouseEvent mouseEvent) {
@@ -193,10 +194,11 @@ public class GameSurfaceController implements Initializable {
         imgOffSoundEffect.setVisible(false);
         imgOnSoundEffect.setVisible(true);
         try {
-            App.gameAttribute.getSoundEffectGame().play();
+            App.gameAttribute.getSoundEffectGame().setStatus(true);
         } catch (Exception e) {
             System.out.println(e);
         }
+        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
     }
 
     public void enterimgOffSoundEffect(MouseEvent mouseEvent) {

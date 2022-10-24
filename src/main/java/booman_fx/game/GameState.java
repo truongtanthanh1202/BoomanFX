@@ -1,6 +1,5 @@
 package booman_fx.game;
 
-//import booman_fx.Enum.StatusGame;
 import booman_fx.Enum.StatusGame;
 import booman_fx.engine.GameAttribute;
 import booman_fx.engine.Sprite;
@@ -12,7 +11,6 @@ import booman_fx.objects.Character.Player.Player;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import booman_fx.objects.Character.Enemy.Enemy.Enemy;
 
 import java.io.FileInputStream;
 import java.util.Collections;
@@ -24,7 +22,6 @@ import java.util.stream.Collectors;
 import static booman_fx.Enum.StatusGame.*;
 import static booman_fx.Enum.TypeSprite.*;
 import static booman_fx.game.App.setRoot;
-//import static booman_fx.Enum.StatusGame.*;
 
 public class GameState extends GameAttribute {
     public static final int HEIGHT = 600;
@@ -64,7 +61,16 @@ public class GameState extends GameAttribute {
             isNextLevel = false;
             level++;
             StatusGame.setPlay(this);
-            timeLeft.setValue(18000);
+            switch (level) {
+                case 3, 4 -> {
+                    timeLeft.setValue(60*500);
+                }
+                case 5 -> {
+                    timeLeft.setValue(60*600);
+                } default -> {
+                    timeLeft.setValue(60*300);
+                }
+            }
             generateMap();
             setRoot("GameSurface");
         }
@@ -101,16 +107,11 @@ public class GameState extends GameAttribute {
     @Override
     protected void checkEndGame() {
         timeLeft.setValue(timeLeft.get() - 1);
-        if (timeLeft.get() < 0 || player == null) {
+        if (timeLeft.get() < 0 || player == null || player.livesProperty().getValue() <= 0) {
+            StatusGame.setLoss(this);
             sleep(1);
             shutdown();
             pause();
-            setRoot("EndGame");
-        }
-        if ((player != null && player.livesProperty().getValue() <= 0)) {
-            StatusGame.setLoss(this);
-            pause();
-            sleep(1);
             setRoot("EndGame");
         }
     }
@@ -120,7 +121,7 @@ public class GameState extends GameAttribute {
         if (status.getValue() == WIN.ordinal()) {
             shutdown();
             sleep(1);
-            App.setRoot("Menu");
+            App.setRoot("EndGame");
             return true;
         }
 

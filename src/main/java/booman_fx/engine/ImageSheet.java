@@ -45,9 +45,7 @@ public class ImageSheet {
             image = ImageIO.read(new File(path));
             int width = image.getWidth();
             int height = image.getHeight();
-
             this.widthImageSheet = width;
-
             pixels = new int[height * width];
             image.getRGB(0, 0, width, height, pixels, 0, width);
         } catch (IOException e) {
@@ -55,12 +53,10 @@ public class ImageSheet {
         }
     }
 
-    public static ImageSheet imageGame = new ImageSheet("src/main/resources/booman_fx/picture/ImageHAHBomb.png", 40, 60);
+    public static ImageSheet imageObjects = new ImageSheet("src/main/resources/booman_fx/picture/ImageObjects.png", 40, 60);
     public static ImageSheet imageMap = new ImageSheet("src/main/resources/booman_fx/picture/ChooseMap.png", 620, 430);
     public static ImageSheet imageButton = new ImageSheet("src/main/resources/booman_fx/picture/ImageButton.png", 300, 80);
-    public static ImageSheet imageBorder = new ImageSheet("src/main/resources/booman_fx/picture/Border.png", 860, 600);
-    public static ImageSheet imageInformation = new ImageSheet("src/main/resources/booman_fx/picture/Information.png", 180, 120);
     public static ImageSheet imageIcon = new ImageSheet("src/main/resources/booman_fx/picture/ImageIcon.png", 50, 50);
-    public static ImageSheet imageLWP = new ImageSheet("src/main/resources/booman_fx/picture/ImageLWP.png", 298, 298);
+    public static ImageSheet imageStatusGame = new ImageSheet("src/main/resources/booman_fx/picture/ImageStatusEndGame.png", 298, 298);
 }
 

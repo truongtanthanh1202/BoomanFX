@@ -120,8 +120,7 @@ public class Map {
 
         //Thêm wall vào theo chiều ngang
         for (int h = 2; h < height - 2; h += 2) {
-            int numWall = Math.abs(random.nextInt()) % (2); // numWall chỉ = 0 hoặc 1
-            numWall += 2; // numWall = 2 hoặc 3
+            int numWall = Math.abs(random.nextInt()) % (2) + 2; // numWall chỉ = 2 hoặc 3
 
             switch (numWall) {
                 case 2 -> {
@@ -168,18 +167,13 @@ public class Map {
             int w = Math.abs(random.nextInt()) % width;
             int h = Math.abs(random.nextInt()) % height;
 
-            //khống chế không có 3 box liên tiếp
             Pair pair = new Pair(w, h);
-
             //Khống chế không cho 2 box không ở ngay cạnh player và enemy
-            if (pair.equals(new Pair(1, 2))
-                    || pair.equals(new Pair(2, 1))
-                    || pair.equals(new Pair(width - 3, 1))
-                    || pair.equals(new Pair(width - 2, 2))
-                    || pair.equals(new Pair(1, height - 3))
-                    || pair.equals(new Pair(2, height - 2))
-                    || pair.equals(new Pair(width - 2, height - 3))
-                    || pair.equals(new Pair(width - 3, height - 2))) {
+            boolean notNextToPlayer = pair.equals(new Pair(1, 2)) || pair.equals(new Pair(2, 1));
+            boolean notNextToEnemyRT = pair.equals(new Pair(width - 3, 1)) || pair.equals(new Pair(width - 2, 2));
+            boolean notNextToEnemyLB = pair.equals(new Pair(1, height - 3)) || pair.equals(new Pair(2, height - 2));
+            boolean notNextToEnemyRB = pair.equals(new Pair(width - 2, height - 3)) || pair.equals(new Pair(width - 3, height - 2));
+            if (notNextToPlayer || notNextToEnemyRB || notNextToEnemyLB || notNextToEnemyRT) {
                 continue;
             }
 
@@ -218,7 +212,7 @@ public class Map {
     }
 
     //check có tồn tại 1 tường khép kín trong 1 map này không
-    //dùng lan, để tìm xem 1 ô không đi vào được
+    //dùng lan để tìm xem 1 ô không đi vào được
     /**
      *  i = 0, check ô bên phải (của ô đang check)
      */
@@ -230,7 +224,7 @@ public class Map {
             int _h = h + dy[i];
             int _w = w + dx[i];
             //nếu lan đến 1 ô thì không lan nữa
-            //nếu ô trong 1 bảng thì lan đến
+            //nếu là ô trong 1 bảng thì lan đến
             //nếu ô đấy là WAll thì không lan đến
             if (0 <= _h && !visited[_h][_w]
                     && _h < height && 0 <= _w && _w < width
