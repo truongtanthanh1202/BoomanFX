@@ -64,7 +64,16 @@ public class GameState extends GameAttribute {
             isNextLevel = false;
             level++;
             StatusGame.setPlay(this);
-            timeLeft.setValue(18000);
+            switch (level) {
+                case 3, 4 -> {
+                    timeLeft.setValue(60*500);
+                }
+                case 5 -> {
+                    timeLeft.setValue(60*600);
+                } default -> {
+                    timeLeft.setValue(60*300);
+                }
+            }
             generateMap();
             setRoot("GameSurface");
         }
