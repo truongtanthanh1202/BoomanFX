@@ -38,13 +38,8 @@ public class ChooseCharacterController implements Initializable {
 
     @FXML
     private void clickImageContinue() {
-        try {
-            GameState.initial();
-        } catch (Exception e) {
-            System.out.println(e);
-            e.printStackTrace();
-        }
         App.setRoot("GameSurface");
+        App.gameAttribute.begin();
     }
 
     @FXML

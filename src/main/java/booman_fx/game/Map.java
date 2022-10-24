@@ -25,7 +25,7 @@ public class Map {
 
     public static final int[] dx = {-1, 1, 0, 0};
     public static final int[] dy = {0, 0, 1, -1};
-    public static final int[] NUM_BOX = {30, 40, 50, 60, 70};
+    public static final int[] NUM_BOX = {30, 40, 50, 60, 60}; //limit Num_box = 60, nếu quá 60 sẽ không đặt được box theo yêu cầu
 
     private final Square[][] map; //Lưu map text vào đây
     private final int width;
