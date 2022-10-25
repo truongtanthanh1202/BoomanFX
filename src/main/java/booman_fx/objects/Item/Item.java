@@ -51,7 +51,7 @@ public abstract class Item extends Sprite{
             }
         }
         if (deathTime < 0) {
-            handleDeath();
+            death();
         }
     }
 

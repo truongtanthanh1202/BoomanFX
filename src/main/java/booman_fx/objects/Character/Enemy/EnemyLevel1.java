@@ -13,7 +13,7 @@ import static booman_fx.Enum.StatusCharacter.IMMORTAL;
 public class EnemyLevel1 extends Enemy {
     public EnemyLevel1(int realX, int realY) {
         super(realX, realY);
-        controller = new EnemyLevelManager(this);
+        enemyManager = new EnemyLevelManager(this);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class EnemyLevel1 extends Enemy {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite) && sprite instanceof Player && ((Player) sprite).getStatus() != IMMORTAL) {
                 Character newP = (Character) sprite;
-                newP.handleDeath();
+                newP.death();
             }
         }
     }
@@ -32,6 +32,6 @@ public class EnemyLevel1 extends Enemy {
         if (!(item instanceof HeartItem)) {
             item.powerUp(this);
         }
-        item.handleDeath();
+        item.death();
     }
 }

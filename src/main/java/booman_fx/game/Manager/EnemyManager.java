@@ -30,6 +30,54 @@ public abstract class EnemyManager {
         direction = UP;
     }
 
+    // find the shortest way from this enemy to player.
+    protected void findShortestWay() {
+        int[][] dis = new int[spritesMap.getHeight()][spritesMap.getWidth()];
+        Pair[][] last = new Pair[spritesMap.getHeight()][spritesMap.getWidth()];
+        for (int i = 0; i < spritesMap.getHeight(); i++) {
+            for (int j = 0; j < spritesMap.getWidth(); j++) {
+                dis[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        Deque<Pair> way = new ArrayDeque<>();
+        way.addLast(new Pair(enemy.getXInMap(), enemy.getYInMap()));
+        dis[enemy.getYInMap()][enemy.getXInMap()] = 0;
+
+        while (!way.isEmpty()) {
+            Pair cur = way.pop();
+            if (spritesMap.getMap()[cur.getY()][cur.getX()].getTypeSprite(PLAYER)) {
+                while (!cur.equals(new Pair(enemy.getXInMap(), enemy.getYInMap()))) {
+                    nextStep = cur;
+                    cur = last[cur.getY()][cur.getX()];
+                }
+                break;
+            }
+            last = setLast(cur, dis, way, last);
+        }
+    }
+
+    protected Pair[][] setLast(Pair cur, int[][] dis, Deque<Pair> way, Pair[][] last) {
+        for (Direction direct : Direction.values()) {
+            int X = cur.getX() + Map.dx[direct.ordinal()];
+            int Y = cur.getY() + Map.dy[direct.ordinal()];
+            if (spritesMap.checkSquareInMap(X, Y) && dis[Y][X] == Integer.MAX_VALUE) {
+                dis[Y][X] = dis[cur.getY()][cur.getX()] + 1;
+                if (dis[Y][X] <= 1) {
+                    if ((!spritesMap.checkDanger(X, Y) && spritesMap.getMap()[Y][X].checkNotExist(new TypeSprite[]{EXPLODE, WALL, BOX}))) {
+                        way.addLast(new Pair(X, Y));
+                        last[Y][X] = new Pair(cur.getX(), cur.getY());
+                    }
+                } else {
+                    if (!spritesMap.getMap()[Y][X].getTypeSprite(WALL)) {
+                        way.addLast(new Pair(X, Y));
+                        last[Y][X] = new Pair(cur.getX(), cur.getY());
+                    }
+                }
+            }
+        }
+        return last;
+    }
 
     protected void checkExitWay(boolean exitWay) {
         if (!exitWay) {
@@ -69,55 +117,6 @@ public abstract class EnemyManager {
         }
         checkExitWay(exitWay);
     }
-
-
-
-    // find the shortest way from this enemy to player.
-    protected void findShortestWay() {
-        int[][] dis = new int[spritesMap.getHeight()][spritesMap.getWidth()];
-        Pair[][] last = new Pair[spritesMap.getHeight()][spritesMap.getWidth()];
-        for (int i = 0; i < spritesMap.getHeight(); i++) {
-            for (int j = 0; j < spritesMap.getWidth(); j++) {
-                dis[i][j] = Integer.MAX_VALUE;
-            }
-        }
-
-        Deque<Pair> way = new ArrayDeque<>();
-        way.addLast(new Pair(enemy.getXInMap(), enemy.getYInMap()));
-        dis[enemy.getYInMap()][enemy.getXInMap()] = 0;
-
-        while (!way.isEmpty()) {
-            Pair cur = way.pop();
-            if (spritesMap.getMap()[cur.getY()][cur.getX()].getTypeSprite(PLAYER)) {
-                while (!cur.equals(new Pair(enemy.getXInMap(), enemy.getYInMap()))) {
-                    nextStep = cur;
-                    cur = last[cur.getY()][cur.getX()];
-                }
-                break;
-            }
-
-            for (Direction direct : Direction.values()) {
-                int X = cur.getX() + Map.dx[direct.ordinal()];
-                int Y = cur.getY() + Map.dy[direct.ordinal()];
-                if (spritesMap.checkSquareInMap(X, Y) && dis[Y][X] == Integer.MAX_VALUE) {
-                    dis[Y][X] = dis[cur.getY()][cur.getX()] + 1;
-                    if (dis[Y][X] <= 1) {
-                        if ((!spritesMap.checkDanger(X, Y) && spritesMap.getMap()[Y][X].checkNotExist(new TypeSprite[]{EXPLODE, WALL, BOX}))) {
-                            way.addLast(new Pair(X, Y));
-                            last[Y][X] = new Pair(cur.getX(), cur.getY());
-                        }
-                    } else {
-                        if (!spritesMap.getMap()[Y][X].getTypeSprite(WALL)) {
-                            way.addLast(new Pair(X, Y));
-                            last[Y][X] = new Pair(cur.getX(), cur.getY());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
 
     protected boolean checkCondition(int safe, Pair cur) {
         if (safe >= 1) {
@@ -203,7 +202,7 @@ public abstract class EnemyManager {
         }
     }
 
-    protected void setStatic() {
+    protected void setStaticMove() {
         enemy.setMoveLeft(false);
         enemy.setMoveUp(false);
         enemy.setMoveDown(false);
@@ -211,7 +210,7 @@ public abstract class EnemyManager {
     }
 
     protected void setMove() {
-        setStatic();
+        setStaticMove();
         if (enemy.getYInMap() < nextStep.getY()) {
             enemy.setMoveDown(true);
             direction = DOWN;

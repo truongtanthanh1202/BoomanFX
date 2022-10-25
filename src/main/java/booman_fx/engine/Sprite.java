@@ -31,7 +31,7 @@ public abstract class Sprite extends ImageView implements Comparable<Sprite> {
 
     public void executeCollision() {}
 
-    public void handleDeath() {
+    public void death() {
         App.gameAttribute.destroy(this);
     }
 

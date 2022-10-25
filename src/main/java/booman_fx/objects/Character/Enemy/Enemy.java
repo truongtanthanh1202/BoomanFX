@@ -15,7 +15,7 @@ import static booman_fx.Enum.Direction.DOWN;
 import static booman_fx.Enum.TypeSprite.ENEMY;
 
 public class Enemy extends Character {
-    protected EnemyManager controller;
+    protected EnemyManager enemyManager;
     public static void createEnemy(int realX, int realY) {
         switch (App.gameAttribute.getLevel()) {
             case 1 -> App.gameAttribute.spawn(new EnemyLevel1(realX, realY));
@@ -33,14 +33,14 @@ public class Enemy extends Character {
 
     @Override
     public void update() {
-        controller.control();
+        enemyManager.control();
         super.update();
     }
 
 
     @Override
-    public void handleDeath() {
-        super.handleDeath();
+    public void death() {
+        super.death();
         List<Sprite> enemies = App.gameAttribute.sprites().stream().filter(sprite -> sprite instanceof Enemy).collect(Collectors.toList());
         if (enemies.isEmpty()) {
             Pair position = App.gameAttribute.getSpritesMap().findEmptySquare();
