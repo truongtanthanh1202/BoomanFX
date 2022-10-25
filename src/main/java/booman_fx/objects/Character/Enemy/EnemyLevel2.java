@@ -7,7 +7,7 @@ import booman_fx.objects.Item.Item;
 public class EnemyLevel2 extends Enemy {
     public EnemyLevel2(int realX, int realY) {
         super(realX, realY);
-        controller = new EnemyLevelManager(this);
+        enemyManager = new EnemyLevelManager(this);
     }
 
     @Override
@@ -19,6 +19,6 @@ public class EnemyLevel2 extends Enemy {
         if(!(item instanceof HeartItem)){
             item.powerUp(this);
         }
-        item.handleDeath();
+        item.death();
     }
 }

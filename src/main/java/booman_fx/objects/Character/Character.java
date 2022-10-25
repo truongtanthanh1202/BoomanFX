@@ -226,7 +226,7 @@ public abstract class Character extends Sprite {
 
     protected void collisionItem(Item item) {
         item.powerUp(this);
-        item.handleDeath();
+        item.death();
     }
 
     protected void collisionBomb() {
@@ -234,7 +234,7 @@ public abstract class Character extends Sprite {
     }
 
     protected void collisionExplode() {
-        handleDeath();
+        death();
     }
 
     protected void collisionWall() {
@@ -246,11 +246,11 @@ public abstract class Character extends Sprite {
     }
 
     @Override
-    public void handleDeath() {
+    public void death() {
         lives.setValue(lives.getValue() - 1);
         StatusCharacter.setImmortal(this);
         if (lives.getValue() <= 0) {
-            super.handleDeath();
+            super.death();
         }
     }
 

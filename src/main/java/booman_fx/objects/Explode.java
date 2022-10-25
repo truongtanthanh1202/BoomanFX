@@ -65,7 +65,7 @@ public class Explode extends Sprite {
     public void update() {
         deathTime -= 1.0 / App.gameAttribute.getFramesPerSecond();
         if (deathTime < 0) {
-            handleDeath();
+            death();
         }
     }
 
@@ -73,15 +73,15 @@ public class Explode extends Sprite {
     public void executeCollision() {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite) && sprite instanceof Box) {
-                sprite.handleDeath();
+                sprite.death();
                 createItem = true;
             }
         }
     }
 
     @Override
-    public void handleDeath() {
-        super.handleDeath();
+    public void death() {
+        super.death();
         if (createItem) {
             Item.createItem(xInMap, yInMap);
         }

@@ -44,7 +44,7 @@ public class Bomb extends Sprite {
         setImage(BOMB_IMAGE[(int) (new Date().getTime() / 100) % 2 + 1].getImage());
         deathTime -= 1.0 / App.gameAttribute.getFramesPerSecond();
         if (deathTime < 0) {
-            handleDeath();
+            death();
         }
     }
 
@@ -52,18 +52,18 @@ public class Bomb extends Sprite {
     public void executeCollision() {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite) && sprite instanceof Explode) {
-                handleDeath();
+                death();
             }
         }
 
     }
 
     @Override
-    public void handleDeath() {
+    public void death() {
         if (App.gameAttribute.getSoundEffectGame().isStatus()) {
             App.gameAttribute.getSoundEffectGame().play();
         }
-        super.handleDeath();
+        super.death();
         character.increaseNumBomb();
         Explode.createExplode(xInMap, yInMap, power);
     }
