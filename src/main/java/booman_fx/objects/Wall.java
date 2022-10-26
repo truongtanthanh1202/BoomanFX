@@ -8,18 +8,18 @@ import java.util.Random;
 import static booman_fx.Enum.TypeSprite.*;
 
 public class Wall extends Sprite {
-    public static void createWall(int xInMap, int yInMap){
+    public static void createWall(int realX, int realY){
         int index;
-        if ((yInMap == 0 || xInMap == 0 || yInMap + 1 == 15 || xInMap + 1 == 17)) {
+        if ((realY == 0 || realX == 0 || realY + 1 == 15 || realX + 1 == 17)) {
             index = 0;
         } else {
             int random = Math.abs(new Random().nextInt()) % 10;
             index = (random < 3) ? 0 : 1;
         }
-        App.gameAttribute.spawn(new Wall(xInMap, yInMap, index));
+        App.gameAttribute.spawn(new Wall(realX, realY, index));
     }
 
-    public Wall(int xInMap, int yInMap, int index) {
-        super(App.gameAttribute.getSpritesMap().getWall()[index].getImage(), xInMap, yInMap, WALL);
+    public Wall(int realX, int realY, int index) {
+        super(App.gameAttribute.getSpritesMap().getWall()[index].getImage(), realX, realY, WALL);
     }
 }

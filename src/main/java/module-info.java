@@ -14,6 +14,8 @@ module bom_it.game {
     exports booman_fx.controller;
     exports booman_fx.game.Manager;
     opens booman_fx.game.Manager to javafx.fxml;
+    exports booman_fx.game.GameResources;
+    opens booman_fx.game.GameResources to javafx.fxml;
 //    exports booman_fx.objects;
 //    exports booman_fx.Enum;
 //    exports booman_fx.objects.Character.Enemy.Enemy;

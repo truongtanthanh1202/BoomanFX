@@ -1,7 +1,7 @@
 package booman_fx.controller;
 
 import booman_fx.game.App;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -127,7 +127,7 @@ public class GameSurfaceController implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
+//        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
     }
 
     public void enterimgOnSoundEffect(MouseEvent mouseEvent) {
@@ -198,7 +198,7 @@ public class GameSurfaceController implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
+//        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
     }
 
     public void enterimgOffSoundEffect(MouseEvent mouseEvent) {

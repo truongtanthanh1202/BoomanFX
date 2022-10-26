@@ -5,7 +5,7 @@ import booman_fx.Enum.TypeSprite;
 import booman_fx.game.App;
 import booman_fx.game.Map;
 import booman_fx.objects.Character.Enemy.Enemy;
-import booman_fx.game.Pair;
+import booman_fx.game.GameResources.Pair;
 
 import java.util.*;
 
@@ -28,43 +28,6 @@ public abstract class EnemyManager {
         // way to move
         nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());
         direction = UP;
-    }
-
-    //find random way
-    protected void findRandomWay(boolean acrossBox) {
-        boolean exitWay = false;
-        boolean[] used = new boolean[Direction.values().length];
-        for (int i = 0; i < 3; ++i) {
-            Direction direct;
-            while (true) {
-                direct = Direction.values()[Math.abs(new Random().nextInt() % 4)];
-                if (direct != Direction.oppositeDirect(direction) && !used[direct.ordinal()]) {
-                    used[direct.ordinal()] = true;
-                    break;
-                }
-            }
-
-            int nextX = enemy.getXInMap() + Map.dx[direct.ordinal()];//Enemy move
-            int nextY = enemy.getYInMap() + Map.dy[direct.ordinal()];
-            if ((!acrossBox && spritesMap.getMap()[nextY][nextX].checkNotExist(new TypeSprite[]{BOMB, BOX, EXPLODE, WALL}))
-                    || (acrossBox && spritesMap.getMap()[nextY][nextX].checkNotExist(new TypeSprite[]{BOMB, EXPLODE, WALL}))) {
-                nextStep = new Pair(nextX, nextY);
-                direction = direct;
-                exitWay = true;
-                break;
-            }
-        }
-
-        if (!exitWay) {
-            direction = Direction.oppositeDirect(direction);
-            int nextX = enemy.getXInMap() + Map.dx[direction.ordinal()];
-            int nextY = enemy.getYInMap() + Map.dy[direction.ordinal()];
-            if (spritesMap.getMap()[nextY][nextX].getTypeSprite(BOMB)) {
-                nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());
-            } else {
-                nextStep = new Pair(nextX, nextY);
-            }
-        }
     }
 
     // find the shortest way from this enemy to player.
@@ -90,26 +53,83 @@ public abstract class EnemyManager {
                 }
                 break;
             }
+            last = setLast(cur, dis, way, last);
+        }
+    }
 
-            for (Direction direct : Direction.values()) {
-                int X = cur.getX() + Map.dx[direct.ordinal()];
-                int Y = cur.getY() + Map.dy[direct.ordinal()];
-                if (spritesMap.checkSquareInMap(X, Y) && dis[Y][X] == Integer.MAX_VALUE) {
-                    dis[Y][X] = dis[cur.getY()][cur.getX()] + 1;
-                    if (dis[Y][X] <= 1) {
-                        if ((!spritesMap.checkDanger(X, Y) && spritesMap.getMap()[Y][X].checkNotExist(new TypeSprite[]{EXPLODE, WALL, BOX}))) {
-                            way.addLast(new Pair(X, Y));
-                            last[Y][X] = new Pair(cur.getX(), cur.getY());
-                        }
-                    } else {
-                        if (!spritesMap.getMap()[Y][X].getTypeSprite(WALL)) {
-                            way.addLast(new Pair(X, Y));
-                            last[Y][X] = new Pair(cur.getX(), cur.getY());
-                        }
+    protected Pair[][] setLast(Pair cur, int[][] dis, Deque<Pair> way, Pair[][] last) {
+        for (Direction direct : Direction.values()) {
+            int X = cur.getX() + Map.dx[direct.ordinal()];
+            int Y = cur.getY() + Map.dy[direct.ordinal()];
+            if (spritesMap.checkSquareInMap(X, Y) && dis[Y][X] == Integer.MAX_VALUE) {
+                dis[Y][X] = dis[cur.getY()][cur.getX()] + 1;
+                if (dis[Y][X] <= 1) {
+                    if ((!spritesMap.checkDanger(X, Y) && spritesMap.getMap()[Y][X].checkNotExist(new TypeSprite[]{EXPLODE, WALL, BOX}))) {
+                        way.addLast(new Pair(X, Y));
+                        last[Y][X] = new Pair(cur.getX(), cur.getY());
+                    }
+                } else {
+                    if (!spritesMap.getMap()[Y][X].getTypeSprite(WALL)) {
+                        way.addLast(new Pair(X, Y));
+                        last[Y][X] = new Pair(cur.getX(), cur.getY());
                     }
                 }
             }
         }
+        return last;
+    }
+
+    protected void checkExitWay(boolean exitWay) {
+        if (!exitWay) {
+            direction = Direction.oppositeDirect(direction);
+            int nextX = enemy.getXInMap() + Map.dx[direction.ordinal()];
+            int nextY = enemy.getYInMap() + Map.dy[direction.ordinal()];
+            if (spritesMap.getMap()[nextY][nextX].getTypeSprite(BOMB)) {
+                nextStep = new Pair(enemy.getXInMap(), enemy.getYInMap());
+            } else {
+                nextStep = new Pair(nextX, nextY);
+            }
+        }
+    }
+    //find random way
+    protected void findRandomWay(boolean acrossBox) {
+        boolean exitWay = false;
+        boolean[] used = new boolean[Direction.values().length];
+        for (int i = 0; i < 3; ++i) {
+            Direction direct;
+            while (true) {
+                direct = Direction.values()[Math.abs(new Random().nextInt() % 4)];
+                if (direct != Direction.oppositeDirect(direction) && !used[direct.ordinal()]) {
+                    used[direct.ordinal()] = true;
+                    break;
+                }
+            }
+
+            int nextX = enemy.getXInMap() + Map.dx[direct.ordinal()];//Enemy move
+            int nextY = enemy.getYInMap() + Map.dy[direct.ordinal()];
+            if ((!acrossBox && spritesMap.getMap()[nextY][nextX].checkNotExist(new TypeSprite[]{BOMB, BOX, EXPLODE, WALL}))
+                    || (acrossBox && spritesMap.getMap()[nextY][nextX].checkNotExist(new TypeSprite[]{BOMB, EXPLODE, WALL}))) {
+                nextStep = new Pair(nextX, nextY);
+                direction = direct;
+                exitWay = true;
+                break;
+            }
+        }
+        checkExitWay(exitWay);
+    }
+
+    protected boolean checkCondition(int safe, Pair cur) {
+        if (safe >= 1) {
+            if ((cur.getX() == enemy.getXInMap() && Math.abs(cur.getY() - enemy.getYInMap()) <= enemy.powerBombProperty().getValue())
+                    || (cur.getY() == enemy.getYInMap() && Math.abs(cur.getX() - enemy.getXInMap()) <= enemy.powerBombProperty().getValue())) {
+                return false;
+            }
+        }
+
+        if (spritesMap.checkDanger(cur.getX(), cur.getY())) {
+            return false;
+        }
+        return true;
     }
 
     // find way to avoid bomb if this enemy is threatened
@@ -121,18 +141,7 @@ public abstract class EnemyManager {
 
         while (!way.isEmpty()) {
             Pair cur = way.pop();
-            boolean existWay = true;
-            if (safe >= 1) {
-                if ((cur.getX() == enemy.getXInMap() && Math.abs(cur.getY() - enemy.getYInMap()) <= enemy.powerBombProperty().getValue())
-                        || (cur.getY() == enemy.getYInMap() && Math.abs(cur.getX() - enemy.getXInMap()) <= enemy.powerBombProperty().getValue())) {
-                    existWay = false;
-                }
-            }
-
-            if (spritesMap.checkDanger(cur.getX(), cur.getY())) {
-                existWay = false;
-            }
-
+            boolean existWay = checkCondition(safe, cur);
             if (existWay) {
                 while (!cur.equals(new Pair(enemy.getXInMap(), enemy.getYInMap()))) {
                     nextStep = cur;
@@ -193,7 +202,7 @@ public abstract class EnemyManager {
         }
     }
 
-    protected void setStatic() {
+    protected void setStaticMove() {
         enemy.setMoveLeft(false);
         enemy.setMoveUp(false);
         enemy.setMoveDown(false);
@@ -201,7 +210,7 @@ public abstract class EnemyManager {
     }
 
     protected void setMove() {
-        setStatic();
+        setStaticMove();
         if (enemy.getYInMap() < nextStep.getY()) {
             enemy.setMoveDown(true);
             direction = DOWN;

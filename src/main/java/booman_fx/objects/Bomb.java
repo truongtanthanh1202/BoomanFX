@@ -1,6 +1,6 @@
 package booman_fx.objects;
 
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
 import booman_fx.objects.Character.Character;
@@ -17,13 +17,13 @@ public class Bomb extends Sprite {
     private double deathTime = DEATH_TIME;
     private final int power;
 
-    public static void createBomb(int xInMap, int yInMap, Character character){
-        App.gameAttribute.spawn(new Bomb(xInMap, yInMap, character));
+    public static void createBomb(int realX, int realY, Character character){
+        App.gameAttribute.spawn(new Bomb(realX, realY, character));
     }
 
     // constructor
-    public Bomb(int xInMap, int yInMap, Character character) {
-        super(BOMB_IMAGE[0].getImage(), xInMap, yInMap, BOMB);
+    public Bomb(int realX, int realY, Character character) {
+        super(BOMB_IMAGE[0].getImage(), realX, realY, BOMB);
         this.character = character;
         this.power = character.powerBombProperty().getValue();
 
@@ -44,7 +44,7 @@ public class Bomb extends Sprite {
         setImage(BOMB_IMAGE[(int) (new Date().getTime() / 100) % 2 + 1].getImage());
         deathTime -= 1.0 / App.gameAttribute.getFramesPerSecond();
         if (deathTime < 0) {
-            handleDeath();
+            death();
         }
     }
 
@@ -52,18 +52,18 @@ public class Bomb extends Sprite {
     public void executeCollision() {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite) && sprite instanceof Explode) {
-                handleDeath();
+                death();
             }
         }
 
     }
 
     @Override
-    public void handleDeath() {
+    public void death() {
         if (App.gameAttribute.getSoundEffectGame().isStatus()) {
             App.gameAttribute.getSoundEffectGame().play();
         }
-        super.handleDeath();
+        super.death();
         character.increaseNumBomb();
         Explode.createExplode(xInMap, yInMap, power);
     }

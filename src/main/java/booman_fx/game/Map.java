@@ -3,8 +3,10 @@ package booman_fx.game;
 import booman_fx.Enum.Direction;
 import booman_fx.Enum.TypeMap;
 import booman_fx.Enum.TypeSprite;
-import booman_fx.game.Pair;
+import booman_fx.game.GameResources.Images;
+import booman_fx.game.GameResources.Pair;
 import booman_fx.engine.Sprite;
+import booman_fx.game.GameResources.Square;
 import booman_fx.objects.Bomb;
 import booman_fx.objects.Item.PowerItem;
 
@@ -85,15 +87,16 @@ public class Map {
             }
         }
 
-        // create wall of border - chieu doc
-        for (int h = 0; h < height; h++) {
-            map[h][0].add(WALL);
-            map[h][width - 1].add(WALL);
-        }
         // create wall of border - chieu ngang
         for (int w = 0; w < width; w++) {
             map[0][w].add(WALL);
             map[height - 1][w].add(WALL);
+        }
+
+        // create wall of border - chieu doc
+        for (int h = 0; h < height; h++) {
+            map[h][0].add(WALL);
+            map[h][width - 1].add(WALL);
         }
 
         // create character, player mặc định ở (1,1) và enemy ở 3 góc còn lại
@@ -117,49 +120,48 @@ public class Map {
 
         //Ném wall linh tinh vào map
         Random random = new Random();
-
+        
+        //thêm wall theo chiều dọc
+        for (int w = 2; w < width - 2; w += 2) {
+            ArrayList<Integer> coordinateWall = new ArrayList<>();
+            for (int h = 3; h < height - 2; h += 2) {
+                if (isAcWall(h, w)) coordinateWall.add(h);
+            }
+            int h = coordinateWall.get(Math.abs(random.nextInt()) % (coordinateWall.size()));
+            map[h][w].add(WALL);
+        }
+        
         //Thêm wall vào theo chiều ngang
         for (int h = 2; h < height - 2; h += 2) {
             int numWall = Math.abs(random.nextInt()) % (2) + 2; // numWall chỉ = 2 hoặc 3
-
             switch (numWall) {
                 case 2 -> {
-                    int w1 = Math.abs(random.nextInt()) % (4);
-                    w1++;
-                    int w2 = Math.abs(random.nextInt()) % (6 - w1 - 1);
-                    w2 += w1 + 2;
-                    map[h][2 * w1 + 1].add(WALL);
-                    map[h][2 * w2 + 1].add(WALL);
+                    int wall1 = Math.abs(random.nextInt()) % (4);
+                    wall1++;
+                    int wall2 = Math.abs(random.nextInt()) % (6 - wall1 - 1);
+                    wall2 += wall1 + 2;
+                    map[h][2 * wall1 + 1].add(WALL);
+                    map[h][2 * wall2 + 1].add(WALL);
                 }
                 case 3 -> {
-                    int w1 = Math.abs(random.nextInt()) % (2);
-                    w1++;
-                    int w2;
-                    int w3;
-                    if (w1 == 2) {
-                        w2 = 4;
-                        w3 = 6;
+                    int wall1 = Math.abs(random.nextInt()) % (2);
+                    wall1++;
+                    int wall2;
+                    int wall3;
+                    if (wall1 == 2) {
+                        wall2 = 4;
+                        wall3 = 6;
                     } else {
-                        w2 = Math.abs(random.nextInt()) % (2);
-                        w2 += w1 + 2;
-                        w3 = Math.abs(random.nextInt()) % (6 - w2 - 1);
-                        w3 += w2 + 2;
+                        wall2 = Math.abs(random.nextInt()) % (2);
+                        wall2 += wall1 + 2;
+                        wall3 = Math.abs(random.nextInt()) % (6 - wall2 - 1);
+                        wall3 += wall2 + 2;
                     }
-                    map[h][2 * w1 + 1].add(WALL);
-                    map[h][2 * w2 + 1].add(WALL);
-                    map[h][2 * w3 + 1].add(WALL);
+                    map[h][2 * wall1 + 1].add(WALL);
+                    map[h][2 * wall2 + 1].add(WALL);
+                    map[h][2 * wall3 + 1].add(WALL);
                 }
             }
-        }
-
-        //thêm wall theo chiều dọc
-        for (int w = 2; w < width - 2; w += 2) {
-            ArrayList<Integer> vtWall = new ArrayList<>();
-            for (int h = 3; h < height - 2; h += 2) {
-                if (checkWall(h, w)) vtWall.add(h);
-            }
-            int h = vtWall.get(Math.abs(random.nextInt()) % (vtWall.size()));
-            map[h][w].add(WALL);
         }
 
         //Ném từng box vào map cho đến khi num_box = 0
@@ -193,7 +195,7 @@ public class Map {
     }
 
     // check xem khi thêm 1 WALL có thỏa mãn điều kiện hàm dfs() hay không
-    private boolean checkWall(int h, int w) {
+    private boolean isAcWall(int h, int w) {
         boolean wall = true;
         map[h][w].add(WALL);
         boolean[][] visited = new boolean[height][width];
@@ -226,8 +228,8 @@ public class Map {
             //nếu lan đến 1 ô thì không lan nữa
             //nếu là ô trong 1 bảng thì lan đến
             //nếu ô đấy là WAll thì không lan đến
-            if (0 <= _h && !visited[_h][_w]
-                    && _h < height && 0 <= _w && _w < width
+            if (0 <= _h && _h < height
+                    && 0 <= _w && _w < width && !visited[_h][_w]
                     && !map[_h][_w].getTypeSprite(WALL)) {
                 dfs(_h, _w, visited);
             }
@@ -309,11 +311,12 @@ public class Map {
         if (map[y][x].getTypeSprite(BOMB)) {
             return true;
         }
+        boolean caseLeft = checkDangerInDirection(x, y, LEFT);
+        boolean caseRight = checkDangerInDirection(x, y, RIGHT);
+        boolean caseUp = checkDangerInDirection(x, y, UP);
+        boolean caseDown = checkDangerInDirection(x, y, DOWN);
 
-        return checkDangerInDirection(x, y, LEFT)
-                || checkDangerInDirection(x, y, RIGHT)
-                || checkDangerInDirection(x, y, UP)
-                || checkDangerInDirection(x, y, DOWN);
+        return caseLeft || caseRight || caseUp || caseDown;
     }
 
     public Images getBackground() {

@@ -2,7 +2,7 @@ package booman_fx.objects.Character;
 
 import booman_fx.Enum.StatusCharacter;
 import booman_fx.Enum.TypeSprite;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
 import booman_fx.objects.Bomb;
@@ -117,8 +117,8 @@ public abstract class Character extends Sprite {
     }
 
     // Constructor
-    public Character(Image image, int xInMap, int yInMap, TypeSprite typeSprite, Images[][] imageCharacter) {
-        super(image, xInMap, yInMap, typeSprite);
+    public Character(Image image, int realX, int realY, TypeSprite typeSprite, Images[][] imageCharacter) {
+        super(image, realX, realY, typeSprite);
         onBomb = new Bomb[]{null, null};
         this.imageCharacter = imageCharacter;
     }
@@ -143,11 +143,11 @@ public abstract class Character extends Sprite {
     }
 
     // Check entirety stand in this square
-    public boolean checkCovered(int xInMap, int yInMap) {
-        return (xInMap * SIZE < collisionBound.getX()
-                && collisionBound.getX() + collisionBound.getWidth() < (xInMap + 1) * SIZE
-                && yInMap * SIZE < collisionBound.getY()
-                && collisionBound.getY() + collisionBound.getHeight() < (yInMap + 1) * SIZE);
+    public boolean checkCovered(int realX, int realY) {
+        return (realX * SIZE < collisionBound.getX()
+                && collisionBound.getX() + collisionBound.getWidth() < (realX + 1) * SIZE
+                && realY * SIZE < collisionBound.getY()
+                && collisionBound.getY() + collisionBound.getHeight() < (realY + 1) * SIZE);
     }
 
     @Override
@@ -226,7 +226,7 @@ public abstract class Character extends Sprite {
 
     protected void collisionItem(Item item) {
         item.powerUp(this);
-        item.handleDeath();
+        item.death();
     }
 
     protected void collisionBomb() {
@@ -234,7 +234,7 @@ public abstract class Character extends Sprite {
     }
 
     protected void collisionExplode() {
-        handleDeath();
+        death();
     }
 
     protected void collisionWall() {
@@ -246,11 +246,11 @@ public abstract class Character extends Sprite {
     }
 
     @Override
-    public void handleDeath() {
+    public void death() {
         lives.setValue(lives.getValue() - 1);
         StatusCharacter.setImmortal(this);
         if (lives.getValue() <= 0) {
-            super.handleDeath();
+            super.death();
         }
     }
 

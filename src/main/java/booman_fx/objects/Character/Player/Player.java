@@ -3,7 +3,7 @@ package booman_fx.objects.Character.Player;
 import booman_fx.Enum.TypePlayer;
 import booman_fx.engine.Sprite;
 import booman_fx.game.App;
-import booman_fx.game.Images;
+import booman_fx.game.GameResources.Images;
 import booman_fx.objects.Bomb;
 import booman_fx.objects.Box;
 import booman_fx.objects.Character.Character;
@@ -19,15 +19,15 @@ import static booman_fx.Enum.TypeSprite.*;
 public class Player extends Character {
     public static TypePlayer type = TypePlayer.LIGHTGREEN;
 
-    public static Player createPlayer(int xInMap, int yInMap) {
-        Player player = new Player(xInMap, yInMap);
+    public static Player createPlayer(int realX, int realY) {
+        Player player = new Player(realX, realY);
         App.gameAttribute.spawn(player);
         return player;
     }
 
-    public Player(int xInMap, int yInMap) {
+    public Player(int realX, int realY) {
         super(Images.boomer[type.ordinal()][DOWN.ordinal()][0].getImage(),
-                xInMap, yInMap, PLAYER, Images.boomer[type.ordinal()]);
+                realX, realY, PLAYER, Images.boomer[type.ordinal()]);
     }
 
     @Override

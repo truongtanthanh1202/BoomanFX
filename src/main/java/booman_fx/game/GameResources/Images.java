@@ -1,4 +1,4 @@
-package booman_fx.game;
+package booman_fx.game.GameResources;
 
 import booman_fx.engine.ImageSheet;
 import javafx.scene.image.Image;
@@ -462,6 +462,23 @@ public class Images {
             {
                     new Images(3, 11, ImageSheet.imageObjects),
                     new Images(3, 12, ImageSheet.imageObjects)
+            },
+            {
+                    new Images(0, 11, ImageSheet.imageObjects),
+                    new Images(7, 11, ImageSheet.imageObjects),
+            },
+            {
+                    new Images(1, 11, ImageSheet.imageObjects),
+                    new Images(7, 11, ImageSheet.imageObjects),
+            },
+            {
+
+                    new Images(2, 11, ImageSheet.imageObjects),
+                    new Images(7, 11, ImageSheet.imageObjects),
+            },
+            {
+                    new Images(3, 11, ImageSheet.imageObjects),
+                    new Images(7, 11, ImageSheet.imageObjects)
             }
     };
 
