@@ -6,3 +6,9 @@ Class Diagram:
   
 Dev Document:
   https://docs.google.com/document/d/1ZKBAV1EiRL2U4_4aiE_XWMraaGrj-UdJRRQ9BknuDhQ/edit
+
+# Software requirement: 
+- JDK 17
+- JavaFX
+- Intellij IDE(optional)
+
