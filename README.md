@@ -35,7 +35,7 @@ Dev Document:
 
 ## Hệ thống các thuộc tính mỗi level:
 - Level 1: Enemy di chuyển ngẫu nhiên, sẽ quay đi tìm đường khác ngay khi vừa gặp bomb. Việc tìm đường khác này là ngẫu nhiên. Khi chạm vào player sẽ khiến player mất 1 mạng. 
-- Level 2: Enemy di chuyển ngẫu nhiên nhung có thể đi xuyên các Box, đặt bomb giết player
+- Level 2: Enemy di chuyển ngẫu nhiên nhưng có thể đi xuyên các Box, đặt bomb giết player
 - Level 3: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 1 
 - Level 4: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 2 
 - Level 5: Enemy di chuyển đuổi theo layer đặt bomb phá box và giết player, kĩ năng né bom  cấp 3

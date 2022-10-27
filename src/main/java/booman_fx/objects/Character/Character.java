@@ -123,7 +123,6 @@ public abstract class Character extends Sprite {
         this.imageCharacter = imageCharacter;
     }
 
-    // Move
     private void move(double dx, double dy) {
         collisionBound.setX(collisionBound.getX() + dx);
         collisionBound.setY(collisionBound.getY() + dy);
@@ -142,7 +141,6 @@ public abstract class Character extends Sprite {
         }
     }
 
-    // Check entirety stand in this square
     public boolean checkCovered(int realX, int realY) {
         return (realX * SIZE < collisionBound.getX()
                 && collisionBound.getX() + collisionBound.getWidth() < (realX + 1) * SIZE
@@ -196,7 +194,6 @@ public abstract class Character extends Sprite {
     @Override
     public void executeCollision() {
         boolean[] collisionBomb = new boolean[2];
-
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite)) {
                 if (sprite instanceof Wall) {
@@ -218,19 +215,11 @@ public abstract class Character extends Sprite {
                 }
             }
         }
-
-//        if (onBomb[0] != null && !collisionBomb[0]) {
-//            onBomb[0] = null;
-//        }
     }
 
     protected void collisionItem(Item item) {
         item.powerUp(this);
         item.death();
-    }
-
-    protected void collisionBomb() {
-        moveBack();
     }
 
     protected void collisionExplode() {
@@ -274,7 +263,6 @@ public abstract class Character extends Sprite {
         }
     }
 
-    // back the previous step.
     protected void moveBack() {
         if (moveUp) {
             move(0, VELOCITY * powerSpeed.getValue());

@@ -45,9 +45,9 @@ public class Player extends Character {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite)) {
                 if (sprite instanceof Wall) {
-                    collisionWall();
+//                    collisionWall();
                 } else if (sprite instanceof Box) {
-                    collisionBox();
+//                    collisionBox();
                 } else if (sprite instanceof Explode && status != IMMORTAL) {
                     collisionExplode();
                 } else if (sprite instanceof Bomb) {
@@ -65,19 +65,5 @@ public class Player extends Character {
                 }
             }
         }
-
-//        if (onBomb[0] != null && !collisionBomb[0]) {
-//            onBomb[0] = null;
-//        }
-    }
-
-    @Override
-    public Image getImageInfo() {
-        return super.getImageInfo();
-    }
-
-    @Override
-    public void update() {
-        super.update();
     }
 }
