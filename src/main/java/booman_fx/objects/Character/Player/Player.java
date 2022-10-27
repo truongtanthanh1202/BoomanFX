@@ -30,6 +30,14 @@ public class Player extends Character {
                 realX, realY, PLAYER, Images.boomer[type.ordinal()]);
     }
 
+    public static TypePlayer getType() {
+        return type;
+    }
+
+    public static void setType(TypePlayer type) {
+        Player.type = type;
+    }
+
     @Override
     public void executeCollision() {
         boolean[] collisionBomb = new boolean[2];

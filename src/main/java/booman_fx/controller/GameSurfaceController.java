@@ -127,7 +127,6 @@ public class GameSurfaceController implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
-//        System.out.println(App.gameAttribute.getSoundEffectGame().isStatus());
     }
 
     public void enterimgOnSoundEffect(MouseEvent mouseEvent) {
