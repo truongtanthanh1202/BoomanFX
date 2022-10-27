@@ -8,5 +8,4 @@ public enum TypeMap {
     FIELD,
     SHOP,
     TOY
-//    CINEMA
 }
