@@ -133,6 +133,10 @@ public class GameState extends GameAttribute {
         return false;
     }
 
+    public static void reGenerateMap() {
+        generateMap();
+    }
+
     private static void generateMap() {
         spritesMap = new Map(WIDTH / SIZE_A_SQUARE, HEIGHT / SIZE_A_SQUARE, level);
         for (int h = 0; h < HEIGHT / SIZE_A_SQUARE; ++h) {

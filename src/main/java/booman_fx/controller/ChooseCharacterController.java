@@ -3,6 +3,7 @@ package booman_fx.controller;
 import booman_fx.Enum.TypePlayer;
 import booman_fx.game.GameResources.Images;
 import booman_fx.game.App;
+import booman_fx.game.GameState;
 import booman_fx.objects.Character.Player.Player;
 
 import javafx.fxml.FXML;
@@ -37,6 +38,8 @@ public class ChooseCharacterController implements Initializable {
 
     @FXML
     private void clickImageContinue() {
+        App.gameAttribute.getSceneSprites().getChildren().clear();
+        GameState.reGenerateMap();
         App.setRoot("GameSurface");
         App.gameAttribute.begin();
     }
@@ -72,7 +75,7 @@ public class ChooseCharacterController implements Initializable {
 
                 TypePlayer type = TypePlayer.values()[i * 4 + j];
                 imageView.setOnMouseClicked(mouseEvent -> {
-                    Player.type = type;
+                    App.gameAttribute.getPlayer().setType(type);
                     imagePlayer.setImage(Images.boomer[Player.type.ordinal()][DOWN.ordinal()][0].getImage());
                 });
 
