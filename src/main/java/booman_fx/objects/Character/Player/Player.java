@@ -45,9 +45,9 @@ public class Player extends Character {
         for (Sprite sprite : App.gameAttribute.sprites()) {
             if (this.checkCollision(sprite)) {
                 if (sprite instanceof Wall) {
-//                    collisionWall();
+                    collisionWall();
                 } else if (sprite instanceof Box) {
-//                    collisionBox();
+                    collisionBox();
                 } else if (sprite instanceof Explode && status != IMMORTAL) {
                     collisionExplode();
                 } else if (sprite instanceof Bomb) {
