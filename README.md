@@ -39,4 +39,5 @@ Dev Document:
 - Level 3: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 1 
 - Level 4: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 2 
 - Level 5: Enemy di chuyển đuổi theo layer đặt bomb phá box và giết player, kĩ năng né bom  cấp 3
+## Video demo gamePlay
 https://youtu.be/F4GeH2oUnmg
