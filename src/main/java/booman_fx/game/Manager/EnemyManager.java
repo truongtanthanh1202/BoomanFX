@@ -62,7 +62,7 @@ public abstract class EnemyManager {
             int X = cur.getX() + Map.dx[direct.ordinal()];
             int Y = cur.getY() + Map.dy[direct.ordinal()];
             if (spritesMap.checkSquareInMap(X, Y) && dis[Y][X] == Integer.MAX_VALUE) {
-                dis[Y][X] = dis[cur.getY()][cur.getX()] + 1;
+                dis[Y][X] = dis[cur.getY()][cur.getX()] + 1; // = 0 or 1
                 if (dis[Y][X] <= 1) {
                     if ((!spritesMap.checkDanger(X, Y) && spritesMap.getMap()[Y][X].checkNotExist(new TypeSprite[]{EXPLODE, WALL, BOX}))) {
                         way.addLast(new Pair(X, Y));

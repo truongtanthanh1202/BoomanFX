@@ -121,16 +121,6 @@ public class Map {
         //Ném wall linh tinh vào map
         Random random = new Random();
         
-        //thêm wall theo chiều dọc
-        for (int w = 2; w < width - 2; w += 2) {
-            ArrayList<Integer> coordinateWall = new ArrayList<>();
-            for (int h = 3; h < height - 2; h += 2) {
-                if (isAcWall(h, w)) coordinateWall.add(h);
-            }
-            int h = coordinateWall.get(Math.abs(random.nextInt()) % (coordinateWall.size()));
-            map[h][w].add(WALL);
-        }
-        
         //Thêm wall vào theo chiều ngang
         for (int h = 2; h < height - 2; h += 2) {
             int numWall = Math.abs(random.nextInt()) % (2) + 2; // numWall chỉ = 2 hoặc 3
@@ -164,6 +154,16 @@ public class Map {
             }
         }
 
+        //thêm wall theo chiều dọc
+        for (int w = 2; w < width - 2; w += 2) {
+            ArrayList<Integer> coordinateWall = new ArrayList<>();
+            for (int h = 3; h < height - 2; h += 2) {
+                if (isAcWall(h, w)) coordinateWall.add(h);
+            }
+            int h = coordinateWall.get(Math.abs(random.nextInt()) % (coordinateWall.size()));
+            map[h][w].add(WALL);
+        }
+
         //Ném từng box vào map cho đến khi num_box = 0
         while (num_box > 0) {
             int w = Math.abs(random.nextInt()) % width;
@@ -195,6 +195,7 @@ public class Map {
     }
 
     // check xem khi thêm 1 WALL có thỏa mãn điều kiện hàm dfs() hay không
+    // bằng cách add thử 1 WALL vào xong remove luôn
     private boolean isAcWall(int h, int w) {
         boolean wall = true;
         map[h][w].add(WALL);

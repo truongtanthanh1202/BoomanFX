@@ -12,6 +12,9 @@ Dev Document:
 - JavaFX
 - Intellij IDE(optional)
 
+## Video demo gamePlay
+https://youtu.be/tgZxA6BpyH4
+
 ## Mô tả về các đối tượng trong trò chơi :
 - *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi.
 - *Enemy* là các đối tượng mà Bomber phải tiêu diệt hết để có thể qua Level. Enemy có thể di chuyển ngẫu nhiên hoặc tự đuổi theo Bomber tùy theo loại Enemy. Các loại Enemy sẽ được mô tả cụ thể ở phần dưới.
@@ -39,5 +42,4 @@ Dev Document:
 - Level 3: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 1 
 - Level 4: Enemy di chuyển đuổi theo Player đặt bomb phá box và giết player, kĩ năng né bom nổ cấp 2 
 - Level 5: Enemy di chuyển đuổi theo layer đặt bomb phá box và giết player, kĩ năng né bom  cấp 3
-## Video demo gamePlay
-https://youtu.be/F4GeH2oUnmg
+

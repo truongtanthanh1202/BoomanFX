@@ -9,7 +9,7 @@ import static booman_fx.Enum.TypeSprite.*;
 
 public class Wall extends Sprite {
     public static void createWall(int realX, int realY){
-        int index;
+        int index; //có 2 loại wall, index pick random xem ném loại nào
         if ((realY == 0 || realX == 0 || realY + 1 == 15 || realX + 1 == 17)) {
             index = 0;
         } else {

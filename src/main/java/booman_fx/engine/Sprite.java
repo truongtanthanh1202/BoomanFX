@@ -66,6 +66,8 @@ public abstract class Sprite extends ImageView implements Comparable<Sprite> {
         return (getYInMap() < other.getYInMap()) ? -1 : (getYInMap() > other.getYInMap()) ? 1
                 : (typeSprite == PLAYER) ? 1 : (other.typeSprite == PLAYER) ? -1
                 : (typeSprite == ENEMY) ? 1 : (other.typeSprite == ENEMY) ? -1 : 0;
+        // Dùng để khi player, enemy di chuyển sẽ không bị các object khác đè lên
+        // Enemy đè player, Player đè các objects khác
     }
 
     public boolean checkCollision(Sprite other) {

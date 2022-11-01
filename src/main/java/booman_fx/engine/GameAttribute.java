@@ -49,7 +49,7 @@ public abstract class GameAttribute {
     }
 
     private void buildGameLoop() {
-        final Duration oneFrameAmt = Duration.millis(1000 / (float) framesPerSecond);
+        final Duration oneFrameAmt = Duration.millis(1000 / (float) framesPerSecond); // quyết định sau bnh mili giây sẽ xử lý 1 frame
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, actionEvent -> {
             nextLevel();
             updateSprites();
@@ -97,7 +97,7 @@ public abstract class GameAttribute {
     }
 
     // update for all sprites in group sceneSprites
-    protected void updateSprites() {
+    protected void  updateSprites() {
         sprites().forEach(Sprite::update);
     }
 
@@ -138,6 +138,7 @@ public abstract class GameAttribute {
         gameLoop.stop();
     }
 
+    //Truyền hình ảnh vào sceneSprites khi có 1 objects được add vào trong khi chơi game (Bomb, explode)
     public List<Sprite> sprites() {
         return sceneSprites.getChildren().stream().map(image -> (Sprite) image).collect(Collectors.toList());
     }
